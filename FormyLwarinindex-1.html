@@ -1,0 +1,3064 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Moon Hug For You – Period Comfort Space</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    /* ================== PART 1 – GLOBAL STYLE & COLORS ================== */
+    :root {
+      --pink: #ff8fc7;
+      --pink-soft: #ffe3f1;
+      --pink-soft-2: #fff1f8;
+      --purple: #8b7bff;
+      --purple-deep: #4b3a9b;
+      --blue-soft: #e5f4ff;
+      --blue-soft-2: #edf7ff;
+      --yellow-soft: #ffe9a8;
+      --mint-soft: #d8fff0;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #ffeaf4 0, #fef4ff 30%, #e5f4ff 70%, #f9fcff 100%);
+      color: #333;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    h1, h2, h3 {
+      margin-top: 0;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+    .section {
+      padding: 40px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.8);
+    }
+    .section:nth-of-type(odd) {
+      background: linear-gradient(135deg, #ffeaf4 0%, #f5ebff 100%);
+    }
+    .section:nth-of-type(even) {
+      background: linear-gradient(135deg, #e6f7ff 0%, #ffe9f0 100%);
+    }
+
+    /* ================== PART 2 – HEADER / NAV ================== */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: linear-gradient(90deg, #ffbddf, #c7c0ff);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,0.6);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 16px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .logo {
+      font-weight: 700;
+      font-size: 20px;
+      color: #4b3a9b;
+    }
+    nav a {
+      margin-left: 12px;
+      font-size: 14px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      color: #4b3a9b;
+      background: rgba(255,255,255,0.6);
+    }
+    nav a:hover {
+      background: rgba(255,255,255,0.95);
+    }
+
+    /* ================== PART 3 – BUTTONS ================== */
+    button {
+      cursor: pointer;
+      border-radius: 999px;
+      border: none;
+      padding: 8px 16px;
+      background: linear-gradient(135deg, var(--pink), #ff6fb1);
+      color: #fff;
+      font-size: 14px;
+      box-shadow: 0 4px 12px rgba(255, 111, 177, 0.4);
+    }
+    button.secondary {
+      background: linear-gradient(135deg, #ffffff, #ffe9ff);
+      color: var(--purple-deep);
+      border: 1px solid #f1cfff;
+      box-shadow: 0 3px 8px rgba(156, 110, 255, 0.18);
+    }
+    button:disabled {
+      opacity: 0.6;
+      cursor: default;
+    }
+
+    /* ================== PART 4 – HOME ================== */
+    #home .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1.3fr);
+      gap: 24px;
+      align-items: center;
+    }
+    #home .hero-card {
+      background: linear-gradient(135deg, #fff8ff, #e6f7ff);
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 0 14px 40px rgba(127, 96, 255, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+    }
+    #home .hero-moon {
+      background: radial-gradient(circle at 30% 20%, #fffce3, #f2e7ff);
+      border-radius: 50%;
+      width: 230px;
+      height: 230px;
+      margin: 0 auto;
+      position: relative;
+      box-shadow: 0 16px 50px rgba(80, 60, 160, 0.4);
+    }
+    #home .hero-moon::after {
+      content: "";
+      position: absolute;
+      inset: 15%;
+      border-radius: 50%;
+      background: radial-gradient(circle at 60% 40%, rgba(255,255,255,0.95), transparent 60%);
+      opacity: 0.9;
+    }
+    #home .hero-moon-text {
+      position: absolute;
+      bottom: 16px;
+      width: 100%;
+      text-align: center;
+      font-size: 12px;
+      color: #4b3a9b;
+      font-weight: 600;
+    }
+    #home .hug-box {
+      margin-top: 16px;
+      padding: 12px;
+      border-radius: 12px;
+      background: #ffffff;
+      border: 1px dashed #f1cfff;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    .hug-btn {
+      margin-top: 12px;
+    }
+    .hug-message {
+      margin-top: 12px;
+      padding: 10px;
+      border-radius: 12px;
+      background: #fef6ff;
+      border: 1px solid #efd8ff;
+      font-size: 14px;
+      display: none;
+    }
+
+    @media (max-width: 768px) {
+      #home .hero {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ================== PART 5 – GAME ROOM LAYOUT ================== */
+    #games .game-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 2fr);
+      gap: 16px;
+    }
+    @media (max-width: 900px) {
+      #games .game-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+    .game-list {
+      background: rgba(255,255,255,0.95);
+      border-radius: 16px;
+      padding: 12px;
+      box-shadow: 0 12px 30px rgba(90, 70, 180, 0.2);
+      max-height: 460px;
+      overflow-y: auto;
+    }
+    .game-list button {
+      width: 100%;
+      margin-bottom: 6px;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 13px;
+    }
+    .game-list button span {
+      font-size: 11px;
+      opacity: 0.9;
+    }
+    .game-list button.active {
+      background: linear-gradient(135deg, #fff5ff, #ffe6f7);
+      color: #4b3a9b;
+      border: 1px solid #ffbde4;
+    }
+    .game-display {
+      background: rgba(255,255,255,0.98);
+      border-radius: 16px;
+      padding: 14px;
+      box-shadow: 0 12px 30px rgba(90, 70, 180, 0.2);
+      min-height: 380px;
+      border: 1px solid rgba(255,255,255,0.9);
+    }
+    .game {
+      display: none;
+    }
+    .game.active {
+      display: block;
+    }
+    .game h3 {
+      margin-bottom: 8px;
+      color: #4b3a9b;
+    }
+    .game-desc {
+      font-size: 13px;
+      margin-bottom: 10px;
+      color: #555;
+    }
+
+    /* ================== PART 6 – GAME 1: CATCH HEARTS ================== */
+    #heartGameArea {
+      position: relative;
+      height: 260px;
+      border-radius: 14px;
+      overflow: hidden;
+      background: linear-gradient(180deg, #ffeaf3, #e3f3ff);
+      border: 1px solid #ffd7ef;
+      margin-top: 10px;
+    }
+    .falling-heart {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background: #ff6b88;
+      transform: rotate(45deg);
+      border-radius: 4px;
+      cursor: pointer;
+      animation: fall 5s linear forwards;
+    }
+    .falling-heart::before,
+    .falling-heart::after {
+      content: "";
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background: #ff6b88;
+      border-radius: 50%;
+      top: -15px;
+      left: 0;
+    }
+    .falling-heart::after {
+      left: -15px;
+      top: 0;
+    }
+    @keyframes fall {
+      0% { top: -40px; opacity: 0.95; }
+      100% { top: 100%; opacity: 0; }
+    }
+    .heart-score {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      margin-top: 8px;
+    }
+    .heart-msg {
+      font-size: 13px;
+      margin-top: 6px;
+      color: #6244c3;
+      min-height: 18px;
+    }
+
+    /* ================== PART 7 – GAME 2: MEMORY FLIP ================== */
+    #memoryGrid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .memory-card {
+      background: #f9f1ff;
+      border-radius: 10px;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 16px;
+      cursor: pointer;
+      border: 1px solid #e0c3ff;
+      user-select: none;
+      color: #6540c0;
+    }
+    .memory-card.hidden-value {
+      background: #d3c5ff;
+      color: transparent;
+    }
+    .memory-card.matched {
+      background: #c9f5d1;
+      border-color: #5da56b;
+      color: #225332;
+      cursor: default;
+    }
+    .memory-status {
+      margin-top: 8px;
+      font-size: 13px;
+      min-height: 18px;
+    }
+
+    /* ================== PART 8 – GAME 3: QUIZ ================== */
+    .quiz-question {
+      font-size: 14px;
+      margin: 10px 0;
+    }
+    .quiz-options button {
+      display: block;
+      width: 100%;
+      margin-bottom: 6px;
+      font-size: 13px;
+      text-align: left;
+    }
+    .quiz-status {
+      margin-top: 6px;
+      font-size: 13px;
+      min-height: 18px;
+    }
+
+    /* ================== PART 9 – GAME 4: BUBBLE POP ================== */
+    #bubbleArea {
+      position: relative;
+      height: 220px;
+      border-radius: 14px;
+      border: 1px solid #d7ccff;
+      background: radial-gradient(circle, #ffffff, #ecf4ff);
+      overflow: hidden;
+      margin-top: 10px;
+      padding: 6px;
+    }
+    .bubble {
+      position: absolute;
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: rgba(127, 96, 255, 0.12);
+      border: 1px solid rgba(127, 96, 255, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      text-align: center;
+      padding: 4px;
+      cursor: pointer;
+      transition: transform 0.2s, background 0.2s;
+      color: #4b3a9b;
+    }
+    .bubble:hover {
+      transform: scale(1.05);
+      background: rgba(127, 96, 255, 0.2);
+    }
+    .bubble-msg {
+      margin-top: 8px;
+      font-size: 13px;
+      min-height: 18px;
+    }
+
+    /* ================== PART 10 – GAME 5: TYPING ================== */
+    .typing-sentence {
+      font-size: 14px;
+      margin: 8px 0;
+      padding: 8px;
+      border-radius: 10px;
+      background: #fdf5ff;
+      border: 1px solid #f1cfff;
+    }
+    .typing-area input {
+      width: 100%;
+      padding: 8px;
+      font-size: 13px;
+      border-radius: 8px;
+      border: 1px solid #d8c4ff;
+      margin: 6px 0;
+    }
+    .typing-status {
+      font-size: 13px;
+      min-height: 18px;
+    }
+
+    /* ================== PART 11 – GAME 6: MOON MOOD ================== */
+    .moon-zone {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1.8fr);
+      gap: 12px;
+      margin-top: 10px;
+    }
+    .moon-circle {
+      background: radial-gradient(circle at 30% 20%, #fffde6, #e4dcff);
+      border-radius: 50%;
+      height: 180px;
+      position: relative;
+      box-shadow: 0 10px 35px rgba(80, 60, 160, 0.4);
+    }
+    .moon-circle::after {
+      content: "";
+      position: absolute;
+      inset: 15%;
+      border-radius: 50%;
+      background: radial-gradient(circle at 60% 40%, rgba(255,255,255,0.9), transparent 55%);
+    }
+    .moon-label {
+      position: absolute;
+      bottom: 12px;
+      width: 100%;
+      text-align: center;
+      font-size: 13px;
+      color: #4b3a9b;
+      font-weight: 600;
+    }
+    .moon-mood-clouds button {
+      display: block;
+      width: 100%;
+      margin-bottom: 6px;
+      font-size: 13px;
+    }
+    .moon-mood-text {
+      margin-top: 6px;
+      font-size: 13px;
+      min-height: 40px;
+    }
+    .moon-circle.calm {
+      background: radial-gradient(circle at 30% 20%, #e9fff0, #dde8ff);
+    }
+    .moon-circle.angry {
+      background: radial-gradient(circle at 30% 20%, #ffe6e6, #f3ddff);
+    }
+    .moon-circle.sad {
+      background: radial-gradient(circle at 30% 20%, #e6f2ff, #e6deff);
+    }
+    .moon-circle.tired {
+      background: radial-gradient(circle at 30% 20%, #fdf3e6, #e8e3ff);
+    }
+
+    /* ================== PART 12 – GAME 7: COLOR MY HEART ================== */
+    .heart-color-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1.7fr);
+      gap: 12px;
+      margin-top: 10px;
+    }
+    .big-heart {
+      margin: 0 auto;
+      width: 170px;
+      height: 150px;
+      position: relative;
+      transform: rotate(-45deg);
+      background: #ffc5d0;
+      border-radius: 24px 24px 10px 24px;
+      box-shadow: 0 10px 30px rgba(220, 100, 130, 0.4);
+    }
+    .big-heart::before,
+    .big-heart::after {
+      content: "";
+      position: absolute;
+      width: 170px;
+      height: 170px;
+      border-radius: 50%;
+      background: inherit;
+    }
+    .big-heart::before {
+      top: -85px;
+      left: 0;
+    }
+    .big-heart::after {
+      left: 85px;
+      top: 0;
+    }
+    .heart-color-buttons button {
+      margin: 4px;
+      font-size: 12px;
+    }
+    .heart-color-text {
+      margin-top: 6px;
+      font-size: 13px;
+      min-height: 32px;
+    }
+
+    /* ================== PART 13 – GAME 8: PUZZLE ================== */
+    #puzzleGrid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+      margin-top: 10px;
+      max-width: 260px;
+    }
+    .puzzle-tile {
+      background: #f1ecff;
+      border-radius: 10px;
+      padding: 10px;
+      text-align: center;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid #cec0ff;
+      user-select: none;
+    }
+    .puzzle-tile.selected {
+      border-color: var(--pink);
+      background: #ffeafd;
+    }
+    .puzzle-status {
+      margin-top: 6px;
+      font-size: 13px;
+      min-height: 20px;
+    }
+
+    /* ================== PART 14 – GAME 9: TINY CHOICES STORY ================== */
+    .story-text {
+      font-size: 14px;
+      margin: 8px 0;
+    }
+    .story-options button {
+      display: block;
+      width: 100%;
+      margin-bottom: 6px;
+      font-size: 13px;
+      text-align: left;
+    }
+    .story-result {
+      font-size: 13px;
+      margin-top: 6px;
+      min-height: 32px;
+    }
+
+    /* ================== PART 15 – GAME 10: BREATHE ================== */
+    .breath-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.8fr);
+      gap: 12px;
+      margin-top: 10px;
+      align-items: center;
+    }
+    .breath-circle-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .breath-circle {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 4px solid #9a86ff;
+      background: radial-gradient(circle, #ffffff, #e8e2ff);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      color: #4b3a9b;
+      transition: transform 4s ease-in-out;
+    }
+    .breath-circle.expand {
+      transform: scale(1.3);
+    }
+    .breath-info {
+      font-size: 13px;
+    }
+    .breath-status {
+      margin-top: 8px;
+      font-size: 13px;
+      min-height: 32px;
+    }
+
+    /* ================== PART 16 – NEW GAMES 11–14 ================== */
+    /* Game 11 – Comfort Kitty */
+    .cat-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.9fr);
+      gap: 14px;
+      margin-top: 10px;
+      align-items: center;
+    }
+    .comfort-cat {
+      position: relative;
+      width: 140px;
+      height: 120px;
+      margin: 0 auto;
+      background: radial-gradient(circle at 30% 20%, #ffe0f0, #ffb3d0);
+      border-radius: 80px;
+      box-shadow: 0 10px 30px rgba(255, 119, 178, 0.6);
+    }
+    .comfort-cat::before,
+    .comfort-cat::after {
+      content: "";
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      background: inherit;
+      top: -10px;
+      border-radius: 8px;
+      transform: rotate(45deg);
+    }
+    .comfort-cat::before {
+      left: 18px;
+    }
+    .comfort-cat::after {
+      right: 18px;
+    }
+    .cat-face {
+      position: absolute;
+      inset: 24px 26px 26px 26px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.7);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #aa4d75;
+      font-size: 12px;
+      text-align: center;
+    }
+    .cat-eyes {
+      width: 60%;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 4px;
+      font-weight: 700;
+      font-size: 14px;
+    }
+    .cat-mouth {
+      font-size: 11px;
+    }
+    .cat-text {
+      font-size: 13px;
+      min-height: 40px;
+      margin-top: 4px;
+    }
+
+    /* Game 12 – Gentle Stretches */
+    .stretch-box {
+      margin-top: 10px;
+      padding: 10px;
+      border-radius: 12px;
+      background: #fffef3;
+      border: 1px solid #ffe6b3;
+      font-size: 13px;
+    }
+    .stretch-title {
+      font-weight: 600;
+      color: #c27a2e;
+      margin-bottom: 4px;
+    }
+
+    /* Game 13 – Period Bingo */
+    .bingo-wrap {
+      margin-top: 10px;
+    }
+    .bingo-items {
+      max-height: 180px;
+      overflow-y: auto;
+      margin-bottom: 8px;
+    }
+    .bingo-item {
+      font-size: 13px;
+      margin-bottom: 4px;
+      background: #ffffff;
+      border-radius: 8px;
+      padding: 6px 8px;
+      border: 1px solid #f3d1ff;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .bingo-item input {
+      margin: 0;
+    }
+    .bingo-result {
+      font-size: 13px;
+      min-height: 28px;
+    }
+
+    /* Game 14 – Gratitude Fireflies */
+    .gratitude-input-row {
+      margin-top: 6px;
+      display: flex;
+      gap: 6px;
+    }
+    .gratitude-input-row input {
+      flex: 1;
+      padding: 7px 8px;
+      font-size: 13px;
+      border-radius: 8px;
+      border: 1px solid #ffd3e6;
+    }
+    .firefly-area {
+      position: relative;
+      height: 200px;
+      background: radial-gradient(circle at bottom, #ffe7a0, #ffb3d9, #a7c7ff);
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid #ffcfe6;
+      margin-top: 10px;
+    }
+    .firefly {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #fff8c2, #ffb347);
+      box-shadow: 0 0 12px rgba(255, 248, 194, 0.9);
+      animation: float 6s ease-in-out infinite;
+      opacity: 0.9;
+    }
+    @keyframes float {
+      0% { transform: translateY(0) scale(1); opacity: 0.9; }
+      50% { transform: translateY(-25px) scale(1.3); opacity: 1; }
+      100% { transform: translateY(10px) scale(1); opacity: 0.75; }
+    }
+    .gratitude-hint {
+      margin-top: 8px;
+      font-size: 13px;
+      min-height: 32px;
+    }
+
+    /* ================== PART 17 – MEMORY WALL ================== */
+    .memory-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 10px;
+      margin-top: 12px;
+    }
+    .memory-card-box {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 10px;
+      border: 1px solid #e1d6ff;
+      box-shadow: 0 6px 15px rgba(80, 60, 150, 0.15);
+      cursor: pointer;
+      font-size: 13px;
+      min-height: 80px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .memory-card-box span {
+      font-weight: 600;
+      color: #6a4bc4;
+      font-size: 12px;
+    }
+
+    /* Modal */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 5, 40, 0.6);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 200;
+    }
+    .modal {
+      background: #fff;
+      padding: 16px;
+      border-radius: 16px;
+      max-width: 420px;
+      width: 90%;
+      box-shadow: 0 20px 60px rgba(20, 10, 60, 0.6);
+    }
+    .modal h3 {
+      margin-bottom: 6px;
+    }
+    .modal p {
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    .modal img {
+      max-width: 100%;
+      border-radius: 10px;
+      margin-bottom: 8px;
+    }
+    .modal-close {
+      margin-top: 10px;
+      float: right;
+    }
+
+    /* ================== PART 18 – PERIOD HELP ================== */
+    .disclaimer {
+      font-size: 12px;
+      color: #555;
+      background: #fff9e6;
+      border-radius: 10px;
+      padding: 10px;
+      border: 1px solid #ffe1a4;
+      margin-bottom: 10px;
+    }
+    .accordion {
+      background: #ffffff;
+      color: #4b3a9b;
+      cursor: pointer;
+      padding: 10px 14px;
+      width: 100%;
+      border: none;
+      text-align: left;
+      outline: none;
+      font-size: 14px;
+      border-radius: 10px;
+      margin-bottom: 6px;
+      box-shadow: 0 6px 14px rgba(80, 60, 160, 0.18);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .accordion span {
+      font-size: 18px;
+      margin-left: 8px;
+    }
+    .panel {
+      padding: 0 10px 8px 10px;
+      background-color: #fbf9ff;
+      display: none;
+      border-radius: 0 0 10px 10px;
+      border: 1px solid #e4d7ff;
+      border-top: none;
+      margin-top: -6px;
+      margin-bottom: 6px;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    /* ================== PART 19 – CREATIVE CORNER & DISTANCE LOVE ================== */
+    .creative-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      margin-top: 12px;
+    }
+    .creative-card {
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 12px;
+      border: 1px solid #e8d7ff;
+      box-shadow: 0 10px 25px rgba(90, 70, 180, 0.18);
+      font-size: 13px;
+    }
+    .coupon-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 6px;
+    }
+    .coupon-grid button {
+      font-size: 12px;
+      padding: 6px 10px;
+    }
+    .coupon-text {
+      margin-top: 8px;
+      min-height: 40px;
+      font-size: 13px;
+    }
+    .kind-mirror-text {
+      margin-top: 8px;
+      min-height: 40px;
+      font-size: 13px;
+    }
+
+    /* Playlist */
+    .playlist-list {
+      margin-top: 6px;
+      padding-left: 18px;
+      font-size: 13px;
+    }
+    .playlist-list li {
+      margin-bottom: 3px;
+    }
+    .playlist-list a {
+      color: #4b3a9b;
+      text-decoration: underline;
+    }
+
+    /* Distance clocks */
+    .clock-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 8px;
+    }
+    .clock-box {
+      flex: 1 1 140px;
+      background: #fff9ff;
+      border-radius: 12px;
+      padding: 8px 10px;
+      border: 1px solid #e8d7ff;
+    }
+    .clock-label {
+      font-size: 12px;
+      color: #555;
+    }
+    .clock-time {
+      font-weight: 600;
+      font-size: 16px;
+      color: #4b3a9b;
+      margin-top: 4px;
+    }
+    .clock-note {
+      font-size: 12px;
+      margin-top: 6px;
+      color: #555;
+    }
+
+    /* Distance check-in */
+    .dist-select {
+      width: 100%;
+      margin-top: 4px;
+      padding: 6px 8px;
+      border-radius: 8px;
+      border: 1px solid #e2d3ff;
+      font-size: 13px;
+    }
+    .dist-reply {
+      margin-top: 8px;
+      font-size: 13px;
+      min-height: 40px;
+    }
+    .dist-positive-text {
+      margin-top: 8px;
+      font-size: 13px;
+      min-height: 40px;
+    }
+
+    /* ================== PART 20 – EXTRA LOVE ================== */
+    .reason-box {
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 12px;
+      border: 1px solid #e1d6ff;
+      box-shadow: 0 10px 25px rgba(60, 40, 130, 0.15);
+      margin-bottom: 14px;
+      font-size: 14px;
+    }
+    .reason-text {
+      margin-top: 8px;
+      min-height: 32px;
+    }
+    .mini-heading {
+      font-size: 13px;
+      font-weight: 600;
+      color: #6a4bc4;
+      margin-bottom: 4px;
+    }
+    .task-box {
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 12px;
+      border: 1px solid #f2e4ff;
+      box-shadow: 0 8px 20px rgba(100, 70, 160, 0.15);
+      font-size: 14px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 16px;
+      font-size: 12px;
+      color: #555;
+      background: linear-gradient(90deg, #ffd0e7, #c9d7ff);
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="nav-inner">
+    <div class="logo">Moon Hug For You</div>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#games">Game Room</a>
+      <a href="#memories">Memory Wall</a>
+      <a href="#period-help">Period Help</a>
+      <a href="#creative-corner">Creative Corner</a>
+      <a href="#distance-love">Distance Love</a>
+      <a href="#extra-love">Extra Love</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ================= HOME ================= -->
+<section id="home" class="section">
+  <div class="container">
+    <div class="hero">
+      <div class="hero-card">
+        <h1>Hi my Big Warin , this little site is just for you</h1>
+        <p style="font-size:14px; line-height:1.6;">
+          When you get your period, everything feels heavier – your body, your mood, your thoughts, and your feelings (my big Warin). On those days, I want you to have one tiny safe place that is always here for you.
+        </p>
+        <p style="font-size:14px; line-height:1.6;">
+          Inside this space, there are small games, our memories, and gentle tips on how to take care of your self and mind. You know I’m your doctor (hehe). Whenever you feel like running away from everyone, you can run here for a while. 
+        </p>
+
+        <button class="hug-btn" id="hugButton">Need a hug right now?</button>
+        <div class="hug-message" id="hugMessage">
+          Whatever you feel right now is valid.<br>
+          You are my very special person. Right now, you are tired, sensitive but you know, baby, you are my favorite person. Take one deep breath, and then if you want, play a game, look at our memories, listen to a song, or do anything that makes you feel good. I want to hug you. I wish I could (hehe), but I will be with you. Always 
+        </div>
+
+        <div class="hug-box">
+          <strong>Little promise:</strong><br>
+          If you ever feel like leaving me, I won’t try to control you. I will not leave you just for your mood swings.  I can’t take your pain or your fears from you, but I will always try my best to help you through them. I will never ignore the things that hurt you. I see you, and I understand you.
+        </div>
+      </div>
+      <div>
+        <div class="hero-moon">
+          <div class="hero-moon-text">
+            Every phase of you is beautiful<br>
+            – just like the moon
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= GAME ROOM ================= -->
+<section id="games" class="section">
+  <div class="container">
+    <h2>Game Room – gentle distractions for heavy days</h2>
+    <p style="font-size:13px; color:#555;">
+      Baby,choose any game. Some are easy, some are a bit more challenging, some are just slow and calming.
+      Take your time, no pressure.
+    </p>
+
+    <div class="game-layout">
+      <!-- Game List -->
+      <div class="game-list">
+        <button class="game-tab active" data-game="game1">
+          1. Catch My Hearts
+          <span>easy</span>
+        </button>
+        <button class="game-tab" data-game="game2">
+          2. Love Memory Flip
+          <span>easy</span>
+        </button>
+        <button class="game-tab" data-game="game3">
+          3. Our Story Quiz
+          <span>medium</span>
+        </button>
+        <button class="game-tab" data-game="game4">
+          4. Stress Bubble Pop
+          <span>easy</span>
+        </button>
+        <button class="game-tab" data-game="game5">
+          5. Love Typing
+          <span>medium</span>
+        </button>
+        <button class="game-tab" data-game="game6">
+          6. Moon Mood Journey
+          <span>moon</span>
+        </button>
+        <button class="game-tab" data-game="game7">
+          7. Color My Heart
+          <span>relax</span>
+        </button>
+        <button class="game-tab" data-game="game8">
+          8. Puzzle Us
+          <span>hard</span>
+        </button>
+        <button class="game-tab" data-game="game9">
+          9. Tiny Choices Story
+          <span>soft</span>
+        </button>
+        <button class="game-tab" data-game="game10">
+          10. Breathe with Stars
+          <span>calm</span>
+        </button>
+        <button class="game-tab" data-game="game11">
+          11. Comfort Kitty (click-to-pet)
+          <span>soothing</span>
+        </button>
+        <button class="game-tab" data-game="game12">
+          12. Gentle Stretch Flow
+          <span>body care</span>
+        </button>
+        <button class="game-tab" data-game="game13">
+          13. Period Bingo
+          <span>validation</span>
+        </button>
+        <button class="game-tab" data-game="game14">
+          14. Gratitude Fireflies
+          <span>soft</span>
+        </button>
+      </div>
+
+      <!-- Game Display -->
+      <div class="game-display">
+        <!-- GAME 1 -->
+        <div id="game1" class="game active">
+          <h3>Catch My Hearts</h3>
+          <div class="game-desc">
+            Little hearts will fall from the sky. Every heart you tap is like catching one small “I love you” from me( hehe).
+          </div>
+          <button id="startHearts">Start 20 seconds</button>
+          <div id="heartGameArea"></div>
+          <div class="heart-score">
+            <div>Score: <span id="heartScore">0</span></div>
+            <div>Time left: <span id="heartTime">0</span> s</div>
+          </div>
+          <div class="heart-msg" id="heartMessageBox"></div>
+        </div>
+
+        <!-- GAME 2 -->
+        <div id="game2" class="game">
+          <h3>Love Memory Flip</h3>
+          <div class="game-desc">
+            Flip two cards at a time. If the words match, they stay open.
+            When you finish all pairs, you get a small love message.
+          </div>
+          <button id="resetMemory">New Round</button>
+          <div id="memoryGrid"></div>
+          <div class="memory-status" id="memoryStatus"></div>
+        </div>
+
+        <!-- GAME 3 -->
+        <div id="game3" class="game">
+          <h3>Our Story Quiz</h3>
+          <div class="game-desc">
+            Tiny questions about us. It’s not about “right or wrong”, just about remembering our connection.
+          </div>
+          <div class="quiz-question" id="quizQuestion"></div>
+          <div class="quiz-options" id="quizOptions"></div>
+          <div class="quiz-status" id="quizStatus"></div>
+          <button id="nextQuiz">Next Question</button>
+        </div>
+
+        <!-- GAME 4 -->
+        <div id="game4" class="game">
+          <h3>Stress Bubble Pop</h3>
+          <div class="game-desc">
+            Baby,Tap the bubbles with words like stress or anger. When they pop, a softer word appears below.
+          </div>
+          <div id="bubbleArea"></div>
+          <div class="bubble-msg" id="bubbleMsg"></div>
+        </div>
+
+        <!-- GAME 5 -->
+        <div id="game5" class="game">
+          <h3>Love Typing</h3>
+          <div class="game-desc">
+            Baby,These sentences are things you truly deserve. Type them slowly, no need to rush or be perfect.
+          </div>
+          <button id="newSentence">New Sentence</button>
+          <div class="typing-sentence" id="typingSentence"></div>
+          <div class="typing-area">
+            <input type="text" id="typingInput" placeholder="Type the sentence here...">
+            <button id="checkTyping">Check</button>
+          </div>
+          <div class="typing-status" id="typingStatus"></div>
+        </div>
+
+        <!-- GAME 6 -->
+        <div id="game6" class="game">
+          <h3>Moon Mood Journey</h3>
+          <div class="game-desc">
+            Today you might feel sad, angry, tired or calm. Choose the cloud that feels like you.
+            Every phase of you is allowed.
+          </div>
+          <div class="moon-zone">
+            <div class="moon-circle" id="moonCircle">
+              <div class="moon-label" id="moonLabel">Which phase are you in today?</div>
+            </div>
+            <div>
+              <div class="moon-mood-clouds">
+                <button data-mood="sad" class="secondary moon-btn">Today I feel very sad</button>
+                <button data-mood="angry" class="secondary moon-btn">Today I get angry easily</button>
+                <button data-mood="tired" class="secondary moon-btn">Today I’m just tired</button>
+                <button data-mood="calm" class="secondary moon-btn">Today feels a bit calm</button>
+              </div>
+              <div class="moon-mood-text" id="moonMoodText"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- GAME 7 -->
+        <div id="game7" class="game">
+          <h3>Color My Heart</h3>
+          <div class="game-desc">
+            Maybe your heart feels soft, or cloudy, or a little dark today.
+            Color this heart with the shade that feels true for you.
+          </div>
+          <div class="heart-color-layout">
+            <div>
+              <div class="big-heart" id="bigHeart"></div>
+            </div>
+            <div>
+              <div class="mini-heading">What color is your heart today?</div>
+              <div class="heart-color-buttons">
+                <button data-color="#ffc5d0">Soft pink</button>
+                <button data-color="#c5d9ff">Calm blue</button>
+                <button data-color="#ffe6a3">Warm yellow</button>
+                <button data-color="#c7ffd3">Healing green</button>
+                <button data-color="#d1c0ff">Dreamy purple</button>
+                <button data-color="#999999">A bit grey today</button>
+              </div>
+              <div class="heart-color-text" id="heartColorText"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- GAME 8 -->
+        <div id="game8" class="game">
+          <h3>Puzzle Us</h3>
+          <div class="game-desc">
+            This little number puzzle is like life – sometimes everything feels jumbled,
+            but slowly things come back into the right place.
+          </div>
+          <button id="resetPuzzle">Shuffle Again</button>
+          <div id="puzzleGrid"></div>
+          <div class="puzzle-status" id="puzzleStatus"></div>
+        </div>
+
+        <!-- GAME 9 -->
+        <div id="game9" class="game">
+          <h3>Tiny Choices Story</h3>
+          <div class="game-desc">
+            Small choices, no wrong answers. Whatever you choose, I am still on my warin side.
+          </div>
+          <div class="story-text" id="storyText"></div>
+          <div class="story-options" id="storyOptions"></div>
+          <div class="story-result" id="storyResult"></div>
+          <button id="nextStory">Next Story</button>
+        </div>
+
+        <!-- GAME 10 -->
+        <div id="game10" class="game">
+          <h3>Breathe with Stars</h3>
+          <div class="game-desc">
+            Baby , Let’s take a few deep breaths together. 4 seconds in, 4 seconds out.
+            Today, doing only this is already an achievement.
+          </div>
+          <div class="breath-layout">
+            <div class="breath-circle-wrap">
+              <div class="breath-circle" id="breathCircle">Ready</div>
+            </div>
+            <div class="breath-info">
+              <p style="font-size:13px;">
+                When you press start, the circle grows (breathe in) and shrinks (breathe out).
+                Just follow the movement with your breathing, as gently as you can.okey Baby? You can 
+              </p>
+              <button id="startBreathing">Start 5 breaths</button>
+              <div class="breath-status" id="breathStatus"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- GAME 11: COMFORT KITTY -->
+        <div id="game11" class="game">
+          <h3>Comfort Kitty (click-to-pet)</h3>
+          <div class="game-desc">
+            This little kitty represents comfort. Every time you “pet” her, she purrs a bit louder
+            and sends you a tiny bit of softness.
+          </div>
+          <div class="cat-layout">
+            <div>
+              <div class="comfort-cat">
+                <div class="cat-face">
+                  <div class="cat-eyes">
+                    <span>•</span><span>•</span>
+                  </div>
+                  <div class="cat-mouth">w</div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <button id="petCatBtn">Pet the kitty</button>
+              <div class="cat-text" id="catMood">
+                She’s a little shy… try petting her once.
+              </div>
+              <div style="font-size:12px; margin-top:4px;">
+                Purr level: <span id="catPurrLevel">0</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- GAME 12: GENTLE STRETCHES -->
+        <div id="game12" class="game">
+          <h3>Gentle Stretch Flow</h3>
+          <div class="game-desc">
+            Very soft, simple stretches that are usually comfortable during period days.
+            Listen to your body – if something hurts, skip it.
+          </div>
+          <div class="stretch-box">
+            <div class="stretch-title" id="stretchTitle"></div>
+            <div id="stretchText"></div>
+          </div>
+          <div style="margin-top:8px;">
+            <button id="nextStretch">Next gentle step</button>
+          </div>
+          <p style="font-size:11px; margin-top:6px; color:#777;">
+            Baby, this is not medical advice – if anything feels wrong or painful, stop and rest.
+          </p>
+        </div>
+
+        <!-- GAME 13: PERIOD BINGO -->
+        <div id="game13" class="game">
+          <h3>Period Bingo</h3>
+          <div class="game-desc">
+            Baby ,now tick everything that happened to you today. The more boxes you check,
+            the more you can see how much you are actually handling.
+          </div>
+          <div class="bingo-wrap">
+            <div class="bingo-items" id="bingoItems"></div>
+            <button id="checkBingo">Check my day</button>
+            <div class="bingo-result" id="bingoResult"></div>
+          </div>
+        </div>
+
+        <!-- GAME 14: GRATITUDE FIREFLIES -->
+        <div id="game14" class="game">
+          <h3>Gratitude Fireflies</h3>
+          <div class="game-desc">
+            On hard days, even tiny good things count. Write small things you’re grateful for or moments that felt okay.
+            They will turn into little glowing fireflies.
+          </div>
+          <div class="gratitude-input-row">
+            <input type="text" id="gratitudeInput" placeholder="Example: The tea was warm…">
+            <button class="secondary" id="addGratitude">Add</button>
+          </div>
+          <div class="firefly-area" id="fireflyArea"></div>
+          <div class="gratitude-hint" id="gratitudeHint">
+            Try adding 1–3 things. They don’t have to be big. “I survived today” also counts.
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MEMORY WALL ================= -->
+<section id="memories" class="section">
+  <div class="container">
+    <h2>Baby this is our Memory Wall – 30 little rooms for us</h2>
+    <p style="font-size:13px; color:#555;">
+      Each box keeps a moment, a note . When you feel lonely or scared,
+      open a few of them and remember how many times you were not actually alone.
+    </p>
+
+    <div class="memory-grid">
+      <!-- You can later replace data-note and data-img with your own words and photos -->
+      <div class="memory-card-box" data-title="1. The first time I meet you "
+           data-note="okey , this was funny. we was playing in same map  , and it was your first time on that map .I was with a girl and something happen then , she left . she was angry . you asked me about her then we play games together and we become friend ."
+           data-img="">
+        <span>01</span>
+        <div>The first time I meet with you </div>
+      </div>
+
+      <div class="memory-card-box" data-title="2. That time when I disappeared for 3 days"
+           data-note=" There was a event,marrage cerimony . I desappeared for 3 days . But you didnt disappeared, you was there and also worried about me . You send me also message . after that time , I understand you are a good girl. You care about others .That time I feel interested about you  ."
+           data-img="">
+        <span>02</span>
+        <div>That time when I disappeared for 3 days </div>
+      </div>
+
+      <div class="memory-card-box" data-title="3. My Dear "
+           data-note="I’m ‘Dear’, but not your dear. You told me that once, and I didn’t understand it at first — I didnt  thought it was just your nickname . (Haha) But it was cute, and it made me feel a little more comfortable. I even flirted back then too. (Hahahahaha)."
+           data-img="">
+        <span>03</span>
+        <div> My Dear</div>
+      </div>
+
+      <div class="memory-card-box" data-title="4. Jannnnnnnnnn"
+           data-note="It was a little funny too. I asked you to call me Jan, and you accepted it so sweetly. That’s when we began calling each other Jannn.
+It started with just Jannn, and slowly became Jannnnnnnnnn…
+because we feel a  more, every day'"
+           data-img="">
+        <span>04</span>
+        <div>Jannnnnnnnnn</div>
+      </div>
+
+      <div class="memory-card-box" data-title="5. Understanding "
+           data-note="You know, baby, we understand each other very well most of the time. Age doesn’t matter here. We use words and jokes that only we can understand without explaining them. Like — ‘I hate you’ or ‘I’ll kidnap you’… and it still feels so good."
+           data-img="">
+        <span>05</span>
+        <div>Understanding</div>
+      </div>
+
+      <div class="memory-card-box" data-title="6. Your voice"
+           data-note="Your voice is lovely warm, and sweet. The first time I heard it, it felt like a beautiful moment melting into my heart. And your Bangla accent… it makes your voice even softer, even sweeter. I really love it."
+           data-img="">
+        <span>06</span>
+        <div>Your voice</div>
+      </div>
+
+      <div class="memory-card-box" data-title="7. Sharing voice"
+           data-note="The day I accidentally called you by mistake, we both got really scared. But later, I sent you my first voice message with Tuba. You liked it so much. That’s how our voice-message journey began. You sent me many voice messages, and I sent them back too. Such beautiful moments."
+           data-img="">
+        <span>07</span>
+        <div>Sharing voice</div>
+      </div>
+
+      <div class="memory-card-box" data-title="8. First call"
+           data-note="After so many moments, we started calling each other. My internet was bad, but we still talked. Sometimes you couldn’t hear me clearly, and I couldn’t hear you well either, but we kept talking anyway. That’s how we began learning each other’s language. You even helped me learn Thai slang, and now I know so many sweet Thai words. Thank you for teaching me — I really love that you did."
+           data-img="">
+        <span>08</span>
+        <div>First call</div>
+      </div>
+
+      <div class="memory-card-box" data-title="9. Your eyes"
+           data-note="I’ve told you many times, and I want to say it again , your eyes are so beautiful and pretty.
+The first time I saw you, I was completely stunned. I remember just staring at that photo for so long.
+I can’t even explain what I felt in that moment.."
+           data-img="">
+        <span>09</span>
+        <div>Your eyes</div>
+      </div>
+
+      <div class="memory-card-box" data-title="10.Type"
+           data-note="Before I met you, I used to think people only fall in love with a specific type. But I was wrong. I fell in love without thinking about any of those things. I don’t even know what ‘type’ of girl I like. I just know I like the type that my girl is."
+           data-img="">
+        <span>10</span>
+        <div>Type</div>
+      </div>
+
+      <!-- 11–30 placeholders -->
+      <div class="memory-card-box" data-title="11.My birthday"
+           data-note="24 August was my birthday. You sent me such a long, sweet message. We talked the entire night, even when we were tired. You stayed with me, and that made it unforgettable.
+That night became something very special in my heart.
+For the first time, I felt my birthday in a new way  with more love, more warmth, more comfort.
+Thank you for giving me that feeling. I still carry it with me."
+           data-img="">
+        <span>11</span>
+        <div>My birthday </div>
+      </div>
+
+      <div class="memory-card-box" data-title="12. Your birthday"
+           data-note="24 October was your birthday. I was making a website for you. It took me a long time, but I made it as your birthday gift. It was the best thing I could do for you at that moment.
+You liked it so much. You told me you cried while reading everything on it. That made me emotional too,  but mostly, it made me so happy. I was genuinely happy for you"
+           data-img="">
+        <span>12</span>
+        <div>Your birthday</div>
+      </div>
+
+      <div class="memory-card-box" data-title="13. Playing games together"
+           data-note="Now we play games a lot. We’ve tried many different ones, and sometimes we played for hours.
+The first game we started with was the Discord Garden game. We spent so much time there, doing little things together.
+Then came the fishing game, garden game, and zoo game too , so many fun moments."
+           data-img="">
+        <span>13</span>
+        <div>Playing games together</div>
+      </div>
+
+      <div class="memory-card-box" data-title="14. 99 days in the forest"
+           data-note="This game is not just a game for me  it holds so many memories. I did so many things with you there. We survived together for so many days.
+Now, you play so well. Just the two of us doing everything together… I enjoyed every moment of it.
+You’re my partner."
+           data-img="">
+        <span>14</span>
+        <div>99 days in the forest</div>
+      </div>
+
+      <div class="memory-card-box" data-title="15. Rainy vibes and are you lonely"
+           data-note="These two games we spent so much time together there. Quality time. We have so many screenshots from those moments. We did so many cute things, and it all felt so special. The maps, the time we spent, the music, the moments… everything was perfect.."
+           data-img="">
+        <span>15</span>
+        <div>Rainy vibes and are you lonely</div>
+      </div>
+
+      <div class="memory-card-box" data-title="16. Discord"
+           data-note="It’s such an emotional place for me now. We talked a lot on Discord about so many things. We have so many memories there love, little fights, your stories, my stories, our moments together… even the 12 reactions. I could express myself more freely there than anywhere else. Thank you for connecting with me on Discord. I really love it."
+           data-img="">
+        <span>16</span>
+        <div>Discord</div>
+      </div>
+
+      <div class="memory-card-box" data-title="17. Your accent "
+           data-note="You know, baby, your Thai and Bangla are both so cute… and your English too. The way you talk like yesterday, when you said ‘him not good’ or ‘latul’ (haha)  everything is just so adorable."
+           data-img="">
+        <span>17</span>
+        <div>Your accent</div>
+      </div>
+
+      <div class="memory-card-box" data-title="18. Baby "
+           data-note="My baby, I like this one so much. There are other names too, but I love it the most when you call me with your sweet voice. Now we almost always call each other ‘baby’  ‘Baby come,’ ‘Baby online,’ ‘Baby so dustu.’ I love it every time you say it. It’s just so cute."
+           data-img="">
+        <span>18</span>
+        <div>Baby </div>
+      </div>
+
+      <div class="memory-card-box" data-title="19. Now what we do."
+           data-note="Huh? You know… haha. Now we’re talking all the time. From the moment we wake up, we’re on call. You work,we sleep  we eat, we play games, you take a shower, spend time with Nami and Yuki, whether you’re at the office or at home — we’re always talking. I love how close we’ve become"
+           data-img="">
+        <span>19</span>
+        <div>Now what we do.</div>
+      </div>
+
+      <div class="memory-card-box" data-title="20.Some word"
+           data-note="Baby, I love you more than words can express. I’ve never felt anything like this before. This love feels so pure and beautiful, and I just want to stay in it, with you, for as long as I can."
+           data-img="">
+        <span>20</span>
+        <div>Some word</div>
+      </div>
+
+      <div class="memory-card-box" data-title="21. Mood swings"
+           data-note="This is a good thing to talk about. Baby, it feels so natural, and I know there’s nothing to control. It’s okay  you can be silly with me. In these moments, do anything that makes you feel better. Just try not to do anything you might regret later."
+           data-img="">
+        <span>21</span>
+        <div>Mood swings</div>
+      </div>
+
+      <div class="memory-card-box" data-title="22. Your journey"
+           data-note="Baby, you travel every day to the office and back, and sometimes even farther. Sometimes we talk while you’re on the move, and those little moments feel so special. I just want you to be careful, always, baby. I care about you so much ."
+           data-img="">
+        <span>22</span>
+        <div>Your journey</div>
+      </div>
+
+      <div class="memory-card-box" data-title="23.Take care of yourself"
+           data-note="You’ve probably heard me say ‘take care of yourself’ a lot. That’s because I worry sometimes. I overthink, and sometimes I’m right to do so. I just want nobody to ever hurt you, and I want you to stay healthy and happy.  always.."
+           data-img="">
+        <span>23</span>
+        <div>Take care of yourself</div>
+      </div>
+
+      <div class="memory-card-box" data-title="24. Happy"
+           data-note="I just want to say  whatever happens between us, in the end, you have to be happy. You deserve to lead a happy life."
+           data-img="">
+        <span>24</span>
+        <div>Happy</div>
+      </div>
+
+      <div class="memory-card-box" data-title="25.Something"
+           data-note="Baby, there are a lot of things that we didn’t want but still happened. Those are just bad memories  we will forget them."
+           data-img="">
+        <span>25</span>
+        <div>Something </div>
+      </div>
+
+      <div class="memory-card-box" data-title="26. Miss you"
+           data-note="Sometimes I miss you a lot. You’ve become such a special and important part of my life. When I miss you, I read our old messages, listen to your songs, your voice messages, and mostly, I look at your photos. Hehe."
+           data-img="">
+        <span>26</span>
+        <div>Miss you</div>
+      </div>
+
+      <div class="memory-card-box" data-title="27. I wanna say more "
+           data-note="Baby, there’s so much I want to tell you… so many things from my heart. I’ve only shared a little here. We have so many beautiful memories together. Whenever you feel sad, just remember all of them — they’re ours."
+           data-img="">
+        <span>27</span>
+        <div>I wanna say more</div>
+      </div>
+
+      <div class="memory-card-box" data-title="28. About this website"
+           data-note="I made this website for you, hoping it could be a small source of comfort during your period days. It took me a few days to create, but I made it with love , so you could have a safe, gentle place to come to when your mood feels heavy or your emotions shift too fast. I know I can’t fix every mood swing or painful moment, but this is one small thing I could do for you, with all my heart."
+           data-img="">
+        <span>28</span>
+        <div>About this website</div>
+      </div>
+
+      <div class="memory-card-box" data-title="29. Love "
+           data-note="I love you.  Really . Seriously, so much."
+           data-img="">
+        <span>29</span>
+        <div>Love</div>
+      </div>
+
+      <div class="memory-card-box" data-title="30. Last one "
+           data-note="Baby, you’ve become a very special part of my life. We understand each other in our own little way, and I love that so much.
+I made this website with love, hoping it could comfort you during your heavy mood or period days.
+No matter what happens, I just want you to be safe, healthy, and happy always.
+I love you more than I can ever say."
+           data-img="">
+        <span>30</span>
+        <div>Last one</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Memory Modal -->
+<div class="modal-backdrop" id="memoryModalBackdrop">
+  <div class="modal">
+    <h3 id="memoryModalTitle"></h3>
+    <img id="memoryModalImg" src="" alt="" style="display:none;">
+    <p id="memoryModalText"></p>
+    <button class="modal-close secondary" id="closeMemoryModal">Close</button>
+    <div style="clear:both;"></div>
+  </div>
+</div>
+
+<!-- ================= PERIOD HELP ================= -->
+<section id="period-help" class="section">
+  <div class="container">
+    <h2>Period Help – when your body and heart are both tired</h2>
+    <div class="disclaimer">
+      <strong>Important:</strong> I am not a doctor. These are just gentle, general ideas.
+      If your pain or bleeding is unusual, very strong, or if you feel that something is really wrong,
+      please contact a real doctor, nurse, clinic, or emergency service.
+    </div>
+
+    <button class="accordion">Bad cramps (stomach / lower back pain) <span>+</span></button>
+    <div class="panel">
+      <ul>
+        <li>If you have one, you can use a warm hot‑water bottle or heating pad on your lower belly or lower back
+          (not too hot – protect your skin with a cloth or towel).</li>
+        <li>Sipping warm water or a gentle warm drink can feel comforting for many people.</li>
+        <li>If a doctor has already recommended a painkiller (like ibuprofen or paracetamol),
+          you can follow that advice. Don’t start new medicines on your own – ask a doctor or pharmacist first.</li>
+        <li>For some people, very light movement (slow walking around the room, gentle stretching)
+          can reduce cramps a little. But if it hurts, stop. You don’t have to push your body.</li>
+        <li>If you notice that every month the pain is getting worse, or it stops you from doing normal daily things completely,
+          it’s a good idea to talk to a doctor or gynecologist when you can.</li>
+      </ul>
+    </div>
+
+    <button class="accordion">Mood swings, anger, tears all at once <span>+</span></button>
+    <div class="panel">
+      <p>
+        Because of hormones, feelings can become very intense during your period.
+        You are not doing this “on purpose” – it’s not because you are a bad person.
+      </p>
+      <ul>
+        <li>Try a few slow deep breaths (you can also use the “Breathe with Stars” game above).</li>
+        <li>Make or open a playlist with songs that feel comforting – not necessarily happy,
+          just songs that understand your mood.</li>
+        <li>Use something soft and grounding – for example, hugging a pillow, a soft toy, or wrapping yourself in a blanket.</li>
+        <li>If words feel too hard, you can still message: “I’m not okay today, but I don’t know what to say.”
+          That is already enough information for someone who loves you.</li>
+        <li>If you feel like talking, you can tell me honestly how you feel.
+          If you don’t want to talk, that’s also okay – I’m learning to respect your quiet too.</li>
+      </ul>
+      <p style="font-size:13px; color:#6244c3;">
+        Even when you are angry or want to push me away, the fact that you are still here matters to me.
+        And if you need space, I will try to give it without making you feel guilty.
+      </p>
+    </div>
+
+    <button class="accordion">Headache / body ache <span>+</span></button>
+    <div class="panel">
+      <ul>
+        <li>Headaches can get worse when you are dehydrated,
+          so small sips of water throughout the day can help.</li>
+        <li>Give your eyes a little rest from bright screens if you can. Even 5–10 minutes with your eyes closed helps.</li>
+        <li>Very gentle self‑massage on temples, neck, or shoulders may relax some tension, if it feels okay to you.</li>
+        <li>A warm shower or bath (if available and safe) can relax muscles and help your body feel softer.</li>
+        <li>If the pain is much stronger than usual, or you feel dizzy, sick, or very weak,
+          please don’t wait – contact a doctor or health professional.</li>
+      </ul>
+    </div>
+
+    <button class="accordion">What to eat & what to eat less of <span>+</span></button>
+    <div class="panel">
+      <p><strong>Often helpful for many people:</strong></p>
+      <ul>
+        <li>Warm water or low‑caffeine warm drinks (only if your body is okay with them).</li>
+        <li>Fruits like banana, orange, or others you like and can digest well.</li>
+        <li>Light meals – rice with lentils, soup, soft and simple foods.</li>
+        <li>A little dark chocolate can make some people feel better (if it suits your body).</li>
+        <li>Foods with iron and vitamins (like leafy greens, beans, eggs, etc.), if your body can handle them and you like them.</li>
+      </ul>
+      <p><strong>Things that can make some people feel worse (not everyone):</strong></p>
+      <ul>
+        <li>Very spicy or very oily food, which can upset your stomach.</li>
+        <li>Lots of cold sugary drinks or soft drinks.</li>
+        <li>Too much coffee or strong tea (high caffeine) – can increase anxiety and make it harder to sleep.</li>
+      </ul>
+      <p style="font-size:13px;">
+        <em>Your body is unique. If you notice that a certain food always makes your cramps or mood worse,
+        you can try to avoid it during your period. And if you are unsure,
+        asking a doctor or nutrition professional is always safest.</em>
+      </p>
+    </div>
+
+    <button class="accordion">When you feel like leaving me / pushing me away <span>+</span></button>
+    <div class="panel">
+      <p>
+        If you opened this, maybe you feel overwhelmed, hurt, and like everything – including me –
+        is too much right now.
+      </p>
+      <p>
+        If one day you truly decide you want to leave, I won’t try to control your choice.
+        But before that, I want you to know a few things:
+      </p>
+      <ul>
+        <li>You are not a burden to me. Your pain is real, and I don’t want to minimise it.</li>
+        <li>During period days, feelings often become more extreme – wanting to run away, to block everyone,
+          to disappear. A few days later, the intensity can slowly go down again.</li>
+        <li>You are allowed to rest, cry, be silent, or be distant for a while. You don’t have to pretend to be okay for me.</li>
+      </ul>
+      <p style="font-size:13px; color:#6244c3;">
+        I’m not saying this to hold you by force, but to remind you:
+        <strong>you are more lovable than you believe, even on the days you can’t love yourself.</strong>
+      </p>
+      <button class="secondary" id="needRestBtn">Right now I just need rest</button>
+      <div id="needRestMsg" style="margin-top:6px; font-size:13px;"></div>
+    </div>
+
+    <button class="accordion">When is it important to see a doctor? <span>+</span></button>
+    <div class="panel">
+      <p>
+        Everyone’s period is different, but there are some warning signs where getting medical help is really important.
+        Please consider talking to a doctor or going to a clinic if you notice:
+      </p>
+      <ul>
+        <li>Sudden, very strong pain that is much worse than your normal period pain.</li>
+        <li>Bleeding so heavy that you are soaking through a pad or tampon every hour for several hours.</li>
+        <li>Large blood clots (for example, bigger than a coin) happening again and again.</li>
+        <li>Strong pain together with fever, feeling very sick, or a strange smell from vaginal discharge.</li>
+        <li>Your period suddenly stops for a long time and there is a chance you might be pregnant.</li>
+        <li>Periods that are irregular in a new way (for example, suddenly much more painful or much heavier than before).</li>
+        <li>Feeling so dizzy, weak, or breathless that it’s hard to stand or walk normally.</li>
+      </ul>
+      <p style="font-size:13px;">
+        <em>If anything scares you or feels very different from your usual experience,
+        it’s always okay (and smart) to ask a doctor or nurse. You deserve real medical care when you need it.</em>
+      </p>
+    </div>
+
+    <button class="accordion">Gentle mental health & safety notes <span>+</span></button>
+    <div class="panel">
+      <p>
+        Period days can make existing sadness, anxiety, or old wounds feel louder.
+        Taking care of your mind is just as important as taking care of your body.
+      </p>
+      <ul>
+        <li>If you notice thoughts like “I don’t want to exist” or “Everyone is better without me,”
+          that’s a signal that you deserve support – not that you are weak.</li>
+        <li>When those thoughts come, try to slow everything down:
+          breathe, drink a sip of water, maybe message or call someone safe (including me).</li>
+        <li>If you ever feel like you might seriously hurt yourself,
+          please contact local emergency services, a crisis line, or a trusted person nearby.
+          Your safety is more important than anything else.</li>
+        <li>You can write your feelings in a note (phone or paper) without having to make them sound “pretty”.
+          Just getting them out of your head can help a little.</li>
+        <li>Remember: hormones can make dark thoughts louder,
+          but they are not the full truth about who you are or how loved you are.</li>
+      </ul>
+      <p style="font-size:13px;">
+        <em>If your mental health feels heavy very often (not only during your period),
+        talking with a therapist or counsellor in your country could help a lot.
+        There is nothing shameful about needing that.</em>
+      </p>
+    </div>
+
+    <button class="accordion">Tracking your cycle & patterns (if you want) <span>+</span></button>
+    <div class="panel">
+      <p>
+        Sometimes it helps to track what happens each month, so you can see patterns and explain things better to yourself or a doctor.
+        You don’t have to be perfect with this.
+      </p>
+      <ul>
+        <li>In a notes app or small notebook, you can write:
+          <ul>
+            <li>Day 1 of bleeding,</li>
+            <li>How strong the pain is (for example 1–10),</li>
+            <li>Big mood changes (sad / angry / calm / anxious),</li>
+            <li>Anything special (like headaches, nausea, very heavy bleeding, etc.).</li>
+          </ul>
+        </li>
+        <li>After a few months, you might see a pattern – like which days are usually the hardest for you.</li>
+        <li>Knowing your pattern can help you plan softer days for yourself,
+          and it can also help a doctor understand what’s going on if you ever need to ask for help.</li>
+      </ul>
+      <p style="font-size:13px;">
+        <em>You don’t owe anyone this data – it’s just for you, so that you feel a little more in control of your own body story.</em>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CREATIVE CORNER ================= -->
+<section id="creative-corner" class="section">
+  <div class="container">
+    <h2>Creative Comfort Corner</h2>
+    <p style="font-size:13px; color:#555;">
+      This part is for playful, imaginative comfort: love coupons, kind mirrors, and your own music corner.
+    </p>
+
+    <div class="creative-grid">
+      <!-- Love Coupon Book -->
+      <div class="creative-card">
+        <div class="mini-heading">Love Coupon Book</div>
+        <p>
+          Tap a coupon to see what it means. You can “use” any coupon on any day – distance doesn’t cancel love.
+        </p>
+        <div class="coupon-grid">
+          <button class="secondary coupon-btn" data-coupon="rest">Coupon for guilt‑free rest</button>
+          <button class="secondary coupon-btn" data-coupon="rant">Coupon for a no‑judgement rant</button>
+          <button class="secondary coupon-btn" data-coupon="call">Coupon for a long, slow call</button>
+          <button class="secondary coupon-btn" data-coupon="silence">Coupon for quiet presence</button>
+          <button class="secondary coupon-btn" data-coupon="movie">Coupon for a shared movie night</button>
+          <button class="secondary coupon-btn" data-coupon="reminder">Coupon for gentle reminders that you matter</button>
+        </div>
+        <div class="coupon-text" id="couponText">
+          Tap any coupon to see what it gives you.
+        </div>
+      </div>
+
+      <!-- Kind Mirror -->
+      <div class="creative-card">
+        <div class="mini-heading">Kind Mirror</div>
+        <p>
+          On bad days your inner voice can be very mean. Let this mirror speak to you more kindly.
+        </p>
+        <button id="kindMirrorBtn">Show me something kind about myself</button>
+        <div class="kind-mirror-text" id="kindMirrorText"></div>
+      </div>
+
+      <!-- Comfort Playlist -->
+      <div class="creative-card">
+        <div class="mini-heading">Comfort Playlist (YouTube)</div>
+        <p>
+          These are songs hand‑picked for you. You can Listen them Baby.
+        </p>
+        <ul class="playlist-list">
+         <!-- ২০টা track – শুধু link আর title নিজের মতো বদলাবে -->
+
+          <div class="audio-item">
+            <div class="audio-item-title">Track 1 –Bruno Mars - Talking To The Moon</div>
+            <audio controls preload="none" src="https://cdn.discordapp.com/attachments/1437612172615094322/1457431760060289085/Bruno_Mars_-_Talking_To_The_Moon_Official_Lyric_Video_1.mp3?ex=69614099&is=695fef19&hm=aa5ef90832d751575d5450d0d742e0a751e011606574cc32cbb8fda829e8b51d&"></audio>
+          </div>
+
+          <div class="audio-item">
+            <div class="audio-item-title">Track 2 – Passenger | Let Her Go</div>
+            <audio controls preload="none" src="https://cdn.discordapp.com/attachments/1437612172615094322/1457432416200294695/Passenger_Let_Her_Go_Official_Video.mp3?ex=69614135&is=695fefb5&hm=6d5d9682cc0c3d6951deb2f9134fc589e500bcc41084b1824fecec16d3f2002b&"></audio>
+          </div>
+
+          <div class="audio-item">
+            <div class="audio-item-title">Track 3 – sombr - back to friends</div>
+            <audio controls preload="none" src="https://cdn.discordapp.com/attachments/1437612172615094322/1457432893042458726/sombr_-_back_to_friends_official_audio.mp3?ex=696141a7&is=695ff027&hm=febf3fe84d9f3306061a72d00412ab1b8b934d9314ebf95b19ab0af3334e71e2&"></audio>
+          </div>
+
+          <div class="audio-item">
+            <div class="audio-item-title">Track 4 – Djo - End Of Beginning 
+</div>
+            <audio controls preload="none" src="https://cdn.discordapp.com/attachments/1437612172615094322/1457433280742686800/Djo_-_End_Of_Beginning_Official_Audio.mp3?ex=69614203&is=695ff083&hm=10267702052917b4af42f9c1caeaee5658fc3efeed7ee3691c32d1e34f438d59&"></audio>
+          </div>
+
+          <div class="audio-item">
+            <div class="audio-item-title">Track 5 –One Direction - Night Changes
+e</div>
+            <audio controls preload="none" src="https://cdn.discordapp.com/attachments/1437612172615094322/1457433648860238058/One_Direction_-_Night_Changes_1.mp3?ex=6961425b&is=695ff0db&hm=dc041fad2ec25ec7222e732a7cdbe7ef6160653cf9e42b13f83fec2aa9fa4b01&"></audio>
+          </div>
+
+          <div class="audio-item">
+            <div class="audio-item-title">Track 6 – Shawn Mendes - Treat You Better
+</div>
+            <audio controls preload="none" src="https://cdn.discordapp.com/attachments/1437612172615094322/1457434127086391503/Shawn_Mendes_-_Treat_You_Better.mp3?ex=696142cd&is=695ff14d&hm=0ab468be0c026f8bd244254bdace16a5d5c33dfc177d99775ad030dcb5252e0f&"></audio>
+          </div>
+
+          <div class="audio-item">
+            <div class="audio-item-title">Track 7 – Ed Sheeran - Shape of You</div>
+            <audio controls preload="none" src="https://cdn.discordapp.com/attachments/1437612172615094322/1457434861546635317/Ed_Sheeran_-_Shape_of_You_Official_Music_Video.mp3?ex=6961437c&is=695ff1fc&hm=63c9e75d1a9c55ffb947248578621103aabe8d9925a74886cc67128d13e4f3ed&"></audio>
+          </div>
+
+          <div class="audio-item">
+            <div class="audio-item-title">Track 8 – Ed Sheeran - Perfect</div>
+            <audio controls preload="none" src="https://cdn.discordapp.com/attachments/1437612172615094322/1457435268670947581/Ed_Sheeran_-_Perfect_Official_Music_Video.mp3?ex=696143dd&is=695ff25d&hm=443af58a91a9091916bbbd44c0ba0bda8d2bf8afc75334aa17cadd8dd3087db2&"></audio>
+          </div>
+
+          <div class="audio-item">
+            <div class="audio-item-title">Track 9 – I Think They Call This Love - Matthew Ifield </div>
+            <audio controls preload="none" src="https://cdn.discordapp.com/attachments/1437612172615094322/1457435536066220075/I_Think_They_Call_This_Love_-_Matthew_Ifield_Sub_espanol_Eng_Official_Video.mp3?ex=6961441d&is=695ff29d&hm=7cfd7f9a29e8374b31c709f7720498b91721ecae70b37681558596e5ee5dbb00&"></audio>
+          </div>
+
+          <div class="audio-item">
+            <div class="audio-item-title">Track 10 – Ricky Montgomery - She is she is a lady</div>
+            <audio controls preload="none" src="https://cdn.discordapp.com/attachments/1437612172615094322/1457435791977484512/Ricky_Montgomery_-_She_is_she_is_a_lady_Line_without_a_hook_Lyrics.mp3?ex=6961445a&is=695ff2da&hm=acc53a520a6f65674d38d68d44950731f7c3c3b36f59b66c4ef0b7a69f809a59&"></audio>
+          </div>
+
+          <div class="audio-item">
+            <div class="audio-item-title">Track 11 – JVKE - her</div>
+            <audio controls preload="none" src="https://cdn.discordapp.com/attachments/1437612172615094322/1457436292253225183/JVKE_-_her_official_lyric_video.mp3?ex=696144d1&is=695ff351&hm=7a44a02f6bc7e8b886e65a5312c467d68f07217ad9593f126c14901cede6e9b2&"></audio>
+          </div>
+
+          <div class="audio-item">
+            <div class="audio-item-title">Track 12 – 
+Alex Warren - Ordinary</div>
+            <audio controls preload="none" src="https://cdn.discordapp.com/attachments/1437612172615094322/1457436530418385010/Alex_Warren_-_Ordinary_Official_Video.mp3?ex=6961450a&is=695ff38a&hm=84a4ab807bd597bfdb42eb35dfb4c8d37ea03b399654e423cf6da59178566736&"></audio>
+          </div>
+
+          <div class="audio-item">
+            <div class="audio-item-title">Track 13 – Sia - Snowman</div>
+            <audio controls preload="none" src="https://cdn.discordapp.com/attachments/1437612172615094322/1457436812002988186/Sia_-_Snowman_Official_Video_1.mp3?ex=6961454d&is=695ff3cd&hm=8b4444d77303f7fe9df4b12dd6a85ed77529ffb0e18aac5cad29d99728fe6a72&"></audio>
+          </div>
+
+          <div class="audio-item">
+            <div class="audio-item-title">Track 14 – Laufey - Lover Girl </div>
+            <audio controls preload="none" src="https://cdn.discordapp.com/attachments/1437612172615094322/1457437187208642612/Laufey_-_Lover_Girl_Official_Music_Video.mp3?ex=696145a7&is=695ff427&hm=7d9760595817607750f06b1d0e50560c6e199c2d60df0e39f1c94fc926bc7be5&"></audio>
+          </div>
+
+          <div class="audio-item">
+            <div class="audio-item-title">Track 15 – yung kai - blue</div>
+            <audio controls preload="none" src="https://cdn.discordapp.com/attachments/1437612172615094322/1457437502536159347/yung_kai_-_blue_official_music_video.mp3?ex=696145f2&is=695ff472&hm=48ff80e1d4958b77f6526f01f55af13ce11de624995aa58dd9b25709b1b24d93&"></audio>
+          </div>
+
+          <div class="audio-item">
+            <div class="audio-item-title">Track 16 – HYBS - Tip Toe</div>
+            <audio controls preload="none" src="https://cdn.discordapp.com/attachments/1437612172615094322/1457437892245717013/HYBS_-_Tip_Toe_Official_Video.mp3?ex=6961464f&is=695ff4cf&hm=2edf9706e94fc00241d574321451d4c1e5b74d182c3d76a0ab352286813fb7df&"></audio>
+          </div>
+
+          <div class="audio-item">
+            <div class="audio-item-title">Track 17 – AURORA - Runaway</div>
+            <audio controls preload="none" src="https://cdn.discordapp.com/attachments/1437612172615094322/1457438315677487402/AURORA_-_Runaway_1.mp3?ex=696146b4&is=695ff534&hm=e860508ddf2dcd4cb2d69c231f0958edcdc441440cc8403a68fe36d666166060&"></audio>
+          </div>
+
+          <div class="audio-item">
+            <div class="audio-item-title">Track 18 – Maroon 5 - Memories</div>
+            <audio controls preload="none" src="https://cdn.discordapp.com/attachments/1437612172615094322/1457438771698995283/Maroon_5_-_Memories_Official_Video.mp3?ex=69614721&is=695ff5a1&hm=f5dc76defc7a71d3088f7bdd2c0efcd36d8d1c008fba1caa853ccc7638cfb8e7&"></audio>
+          </div>
+
+          <div class="audio-item">
+            <div class="audio-item-title">Track 19 – Shawn Mendes - There's Nothing Holdin' Me Back</div>
+            <audio controls preload="none" src="https://cdn.discordapp.com/attachments/1437612172615094322/1457439162037698784/Shawn_Mendes_-_Theres_Nothing_Holdin_Me_Back_Official_Music_Video_1.mp3?ex=6961477e&is=695ff5fe&hm=ae3902ef19ebc603307a780744fab24fed21d5e2d525c199c882682058bb024f&"></audio>
+          </div>
+
+          <div class="audio-item">
+            <div class="audio-item-title">Track 20 – Keane - Somewhere Only We Know </div>
+            <audio controls preload="none" src="https://cdn.discordapp.com/attachments/1437612172615094322/1457439423498031206/Keane_-_Somewhere_Only_We_Know_Official_Music_Video_2.mp3?ex=696147bc&is=695ff63c&hm=6992380f4380e3549bcd386bb3e646507171d5f0b3b758f036473210d29d12b7&"></audio>
+          </div>
+        </div>
+
+        <p style="font-size:11px; color:#777; margin-top:6px;">
+          Note: The link must be a direct audio file (like <code>.mp3</code>),  
+          for example: <code>https://yourdomain.com/music/song1.mp3</code>.  
+          Many file‑sharing sites (like Google Drive) don’t give a direct playable link.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DISTANCE LOVE ================= -->
+<section id="distance-love" class="section">
+  <div class="container">
+    <h2>Long Distance Love Corner</h2>
+    <p style="font-size:13px; color:#555;">
+      Being in different countries is hard, but there are still many ways we are connected.
+      These little tools are here to make distance feel a bit softer.
+    </p>
+
+    <div class="creative-grid">
+      <!-- Dual clocks -->
+      <div class="creative-card">
+        <div class="mini-heading">Our two clocks</div>
+        <p>
+          Even when we are far away, our days are moving side by side. Here are our current times:
+        </p>
+        <div class="clock-row">
+          <div class="clock-box">
+            <div class="clock-label">Bangladesh (Dhaka)</div>
+            <div class="clock-time" id="clockDhaka"></div>
+          </div>
+          <div class="clock-box">
+            <div class="clock-label">Thailand (Bangkok)</div>
+            <div class="clock-time" id="clockBangkok"></div>
+          </div>
+        </div>
+        <p class="clock-note">
+          Thailand is usually 1 hour ahead of Bangladesh.  
+          You are also faster than me , and I am late . But I dont care anything
+        </p>
+      </div>
+
+      <!-- Distance check-in -->
+      <div class="creative-card">
+        <div class="mini-heading">Distance Check‑In</div>
+        <p>
+          Choose how you feel and what you mostly want right now.  
+          I’ll show you what I would say to you in that moment.
+        </p>
+        <label style="font-size:12px;">How do you feel right now?</label>
+        <select id="distMoodSelect" class="dist-select">
+          <option value="">Select a feeling…</option>
+          <option value="sad">Sad / heavy</option>
+          <option value="angry">Angry / irritated</option>
+          <option value="tired">Very tired</option>
+          <option value="anxious">Anxious / overthinking</option>
+          <option value="numb">Numb / empty</option>
+          <option value="ok">Kind of okay</option>
+        </select>
+
+        <label style="font-size:12px; margin-top:6px; display:block;">Right now I mostly want:</label>
+        <select id="distNeedSelect" class="dist-select">
+          <option value="">Select what you want…</option>
+          <option value="space">A bit of space</option>
+          <option value="call">A call</option>
+          <option value="texts">Some gentle texts</option>
+          <option value="comfort">Comfort without solutions</option>
+          <option value="dontknow">I don’t know what I need</option>
+        </select>
+
+        <button style="margin-top:8px;" id="distGenerateBtn">What would he say?</button>
+        <div class="dist-reply" id="distReplyText"></div>
+      </div>
+
+      <!-- Distance positivity -->
+      <div class="creative-card">
+        <div class="mini-heading">Distance is hard, but…</div>
+        <p>
+          Sometimes it helps to remember at least one soft, hopeful thing about long distance.
+          Press the button and read slowly.
+        </p>
+        <button id="distPositivityBtn">Show me one</button>
+        <div class="dist-positive-text" id="distPositivityText"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= EXTRA LOVE ================= -->
+<section id="extra-love" class="section">
+  <div class="container">
+    <h2>Extra Love & Calm Corner</h2>
+
+    <div class="reason-box">
+      <div class="mini-heading">Random reason I love you</div>
+      <p style="font-size:13px;">
+        Press the button to see one reason why I love you.
+        This list will never be complete, but it’s a start.
+      </p>
+      <button id="showReason">Show me a reason</button>
+      <div class="reason-text" id="reasonText"></div>
+    </div>
+
+    <div class="task-box">
+      <div class="mini-heading">Today’s tiny task (only if you can)</div>
+      <p id="tinyTaskText">
+        If it doesn’t feel too heavy, drink one glass of water slowly and take three deep breaths.
+        That’s already enough for today.
+      </p>
+      <button class="secondary" id="newTaskBtn">Another tiny task</button>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  From Bangladesh to Thailand – every month, every mood, I am quietly holding you.
+</footer>
+
+<!-- ================= SCRIPT ================= -->
+<script>
+  // Helper: shuffle array
+  function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+
+    /* ---------- HOME: Hug button ---------- */
+    const hugButton = document.getElementById('hugButton');
+    const hugMessage = document.getElementById('hugMessage');
+    if (hugButton) {
+      hugButton.addEventListener('click', () => {
+        hugMessage.style.display = (hugMessage.style.display === 'block') ? 'none' : 'block';
+      });
+    }
+
+    /* ---------- Game Tabs ---------- */
+    const gameTabs = document.querySelectorAll('.game-tab');
+    const games = document.querySelectorAll('.game');
+    gameTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        gameTabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        const id = tab.getAttribute('data-game');
+        games.forEach(g => g.classList.remove('active'));
+        const activeGame = document.getElementById(id);
+        if (activeGame) activeGame.classList.add('active');
+      });
+    });
+
+    /* ---------- GAME 1: Catch My Hearts ---------- */
+    let heartInterval = null;
+    let heartTimer = null;
+    let heartTimeLeft = 0;
+    let heartScore = 0;
+    const heartGameArea = document.getElementById('heartGameArea');
+    const heartScoreSpan = document.getElementById('heartScore');
+    const heartTimeSpan = document.getElementById('heartTime');
+    const heartMsg = document.getElementById('heartMessageBox');
+    const positiveHeartMsgs = [
+      "You are so much more lovable than you think.",
+      "You are never completely alone in this.",
+      "I see how much pain you carry.",
+      "You have been strong for so long.",
+      "Whatever you can do today is enough.",
+      "You are my safe place too.",
+      "One day these painful days will feel softer."
+    ];
+
+    function endHeartGame() {
+      clearInterval(heartInterval);
+      clearInterval(heartTimer);
+      heartInterval = null;
+      heartTimer = null;
+      if (!heartGameArea) return;
+      const hearts = heartGameArea.querySelectorAll('.falling-heart');
+      hearts.forEach(h => h.remove());
+      if (heartMsg) {
+        heartMsg.textContent = "Time’s up. However many hearts you caught, each one is a small good wish from me to you.";
+      }
+    }
+
+    function spawnHeart() {
+      if (!heartGameArea) return;
+      const heart = document.createElement('div');
+      heart.className = 'falling-heart';
+      const areaWidth = heartGameArea.clientWidth;
+      const left = Math.random() * (areaWidth - 40);
+      heart.style.left = left + 'px';
+      heart.style.top = '-40px';
+
+      heart.addEventListener('click', () => {
+        heartScore++;
+        if (heartScoreSpan) heartScoreSpan.textContent = heartScore;
+        heart.remove();
+        if (heartMsg) {
+          const msg = positiveHeartMsgs[Math.floor(Math.random() * positiveHeartMsgs.length)];
+          heartMsg.textContent = msg;
+        }
+      });
+
+      heartGameArea.appendChild(heart);
+      heart.addEventListener('animationend', () => {
+        heart.remove();
+      });
+    }
+
+    const startHeartsBtn = document.getElementById('startHearts');
+    if (startHeartsBtn) {
+      startHeartsBtn.addEventListener('click', () => {
+        if (heartInterval) return; // already running
+        heartScore = 0;
+        if (heartScoreSpan) heartScoreSpan.textContent = heartScore;
+        heartTimeLeft = 20;
+        if (heartTimeSpan) heartTimeSpan.textContent = heartTimeLeft;
+        if (heartMsg) {
+          heartMsg.textContent = "Tap the hearts – every catch is a tiny bit of love landing in your hands.";
+        }
+
+        heartInterval = setInterval(spawnHeart, 800);
+        heartTimer = setInterval(() => {
+          heartTimeLeft--;
+          if (heartTimeSpan) heartTimeSpan.textContent = heartTimeLeft;
+          if (heartTimeLeft <= 0) {
+            endHeartGame();
+          }
+        }, 1000);
+      });
+    }
+
+    /* ---------- GAME 2: Memory Flip ---------- */
+    const memoryWords = ["LOVE", "MOON", "HUG", "SMILE"];
+    let memoryValues = [];
+    let memoryFirst = null;
+    let memoryLock = false;
+    const memoryGrid = document.getElementById('memoryGrid');
+    const memoryStatus = document.getElementById('memoryStatus');
+
+    function initMemoryGame() {
+      if (!memoryGrid) return;
+      memoryGrid.innerHTML = "";
+      memoryValues = shuffle(memoryWords.concat(memoryWords)); // 8 cards
+      memoryFirst = null;
+      memoryLock = false;
+      if (memoryStatus) memoryStatus.textContent = "Flip the cards and try to match the pairs.";
+
+      memoryValues.forEach((val) => {
+        const card = document.createElement('div');
+        card.className = 'memory-card hidden-value';
+        card.dataset.value = val;
+        card.textContent = val;
+        card.addEventListener('click', () => {
+          if (memoryLock || card.classList.contains('matched') || !card.classList.contains('hidden-value')) return;
+          card.classList.remove('hidden-value'); // show
+          if (!memoryFirst) {
+            memoryFirst = card;
+          } else {
+            memoryLock = true;
+            if (memoryFirst.dataset.value === card.dataset.value) {
+              // match
+              setTimeout(() => {
+                memoryFirst.classList.add('matched');
+                card.classList.add('matched');
+                memoryFirst = null;
+                memoryLock = false;
+                if (memoryStatus) {
+                  const allMatched = memoryGrid.querySelectorAll('.memory-card.matched').length === memoryValues.length;
+                  if (allMatched) {
+                    memoryStatus.textContent = "All pairs complete! Just like us – slowly, piece by piece, things find their place.";
+                  } else {
+                    memoryStatus.textContent = "Nice, another pair matched.";
+                  }
+                }
+              }, 400);
+            } else {
+              setTimeout(() => {
+                memoryFirst.classList.add('hidden-value');
+                card.classList.add('hidden-value');
+                memoryFirst = null;
+                memoryLock = false;
+                if (memoryStatus) {
+                  memoryStatus.textContent = "It’s okay when things don’t match at first. You can always try again.";
+                }
+              }, 700);
+            }
+          }
+        });
+        memoryGrid.appendChild(card);
+      });
+    }
+
+    const resetMemoryBtn = document.getElementById('resetMemory');
+    if (resetMemoryBtn) {
+      resetMemoryBtn.addEventListener('click', initMemoryGame);
+    }
+    initMemoryGame();
+
+    /* ---------- GAME 3: Our Story Quiz ---------- */
+    const quizQuestions = [
+      {
+        q: "After one of our longest calls, how do you think I felt?",
+        options: [
+          "Just tired and bored",
+          "Surprisingly light and close to you",
+          "Nothing special at all"
+        ],
+        correct: 1,
+        msgCorrect: "Our long talks are what keep us connected, even across countries.",
+        msgWrong: "Whatever the exact feeling was, I know I didn’t want the connection to end."
+      },
+      {
+        q: "When you are overthinking a lot, what helps the most from me?",
+        options: [
+          "Listening quietly without rushing to fix everything",
+          "Ignoring you until you calm down",
+          "Getting angry at you for being 'too much'"
+        ],
+        correct: 0,
+        msgCorrect: "I’m learning that sometimes you just need to be heard, not fixed.",
+        msgWrong: "I won’t always do it perfectly, but I’m trying to listen better each time."
+      },
+      {
+        q: "During your period, what do you usually need from me?",
+        options: [
+          "For me to completely disappear",
+          "Non‑stop loud talking all day",
+          "Gentle messages and remembering you are in pain"
+        ],
+        correct: 2,
+        msgCorrect: "I’ll try to give you the balance of space and love that you need.",
+        msgWrong: "We can keep learning together how to support you in the way that feels safest."
+      }
+    ];
+    let currentQuiz = 0;
+    const quizQuestionEl = document.getElementById('quizQuestion');
+    const quizOptionsEl = document.getElementById('quizOptions');
+    const quizStatusEl = document.getElementById('quizStatus');
+    const nextQuizBtn = document.getElementById('nextQuiz');
+
+    function renderQuiz() {
+      if (!quizQuestionEl || !quizOptionsEl || !quizStatusEl) return;
+      const qObj = quizQuestions[currentQuiz];
+      quizQuestionEl.textContent = qObj.q;
+      quizOptionsEl.innerHTML = "";
+      quizStatusEl.textContent = "";
+      qObj.options.forEach((opt, idx) => {
+        const btn = document.createElement('button');
+        btn.className = 'secondary';
+        btn.textContent = opt;
+        btn.addEventListener('click', () => {
+          if (idx === qObj.correct) {
+            quizStatusEl.textContent = qObj.msgCorrect;
+            quizStatusEl.style.color = "#2f7a3a";
+          } else {
+            quizStatusEl.textContent = qObj.msgWrong;
+            quizStatusEl.style.color = "#b25a4e";
+          }
+        });
+        quizOptionsEl.appendChild(btn);
+      });
+    }
+
+    if (nextQuizBtn) {
+      nextQuizBtn.addEventListener('click', () => {
+        currentQuiz = (currentQuiz + 1) % quizQuestions.length;
+        renderQuiz();
+      });
+    }
+    renderQuiz();
+
+    /* ---------- GAME 4: Bubble Pop ---------- */
+    const bubbleWords = ["Anger", "Stress", "Pain", "Overthinking", "Fear", "Tension"];
+    const bubbleGood = [
+      "Slowly, things will calm down. You don’t have to rush your healing.",
+      "You are stronger than this moment feels.",
+      "Whatever you managed today is enough.",
+      "You are not 'too much' – your feelings make sense.",
+      "There is always a place for you with me.",
+      "It’s okay to rest. You are still worthy of love."
+    ];
+    const bubbleArea = document.getElementById('bubbleArea');
+    const bubbleMsg = document.getElementById('bubbleMsg');
+
+    function initBubbles() {
+      if (!bubbleArea) return;
+      bubbleArea.innerHTML = "";
+      const width = bubbleArea.clientWidth;
+      const height = bubbleArea.clientHeight;
+      bubbleWords.forEach(word => {
+        const bubble = document.createElement('div');
+        bubble.className = 'bubble';
+        bubble.textContent = word;
+        const left = Math.random() * (width - 80);
+        const top = Math.random() * (height - 80);
+        bubble.style.left = left + 'px';
+        bubble.style.top = top + 'px';
+        bubble.addEventListener('click', () => {
+          bubble.remove();
+          if (bubbleMsg) {
+            bubbleMsg.textContent = bubbleGood[Math.floor(Math.random() * bubbleGood.length)];
+          }
+        });
+        bubbleArea.appendChild(bubble);
+      });
+    }
+    initBubbles();
+
+    /* ---------- GAME 5: Love Typing ---------- */
+    const typingSentences = [
+      "You are my favourite.",
+      "Even on your worst days, I still choose you.",
+      "You are stronger than this pain.",
+      "One day this distance will end.",
+      "You deserve gentle love, especially from yourself."
+    ];
+    const typingSentenceEl = document.getElementById('typingSentence');
+    const typingInputEl = document.getElementById('typingInput');
+    const typingStatusEl = document.getElementById('typingStatus');
+    const newSentenceBtn = document.getElementById('newSentence');
+    const checkTypingBtn = document.getElementById('checkTyping');
+    let currentSentence = "";
+    let typingStartTime = null;
+
+    function setNewSentence() {
+      if (!typingSentenceEl || !typingInputEl || !typingStatusEl) return;
+      currentSentence = typingSentences[Math.floor(Math.random() * typingSentences.length)];
+      typingSentenceEl.textContent = currentSentence;
+      typingInputEl.value = "";
+      typingStatusEl.textContent = "";
+      typingStartTime = Date.now();
+    }
+
+    if (newSentenceBtn) {
+      newSentenceBtn.addEventListener('click', setNewSentence);
+    }
+    if (checkTypingBtn) {
+      checkTypingBtn.addEventListener('click', () => {
+        if (!currentSentence || !typingInputEl || !typingStatusEl || !typingStartTime) return;
+        const typed = typingInputEl.value;
+        const timeSec = ((Date.now() - typingStartTime) / 1000).toFixed(1);
+        if (typed.trim() === currentSentence.trim()) {
+          typingStatusEl.style.color = "#2f7a3a";
+          typingStatusEl.textContent =
+            "You wrote it perfectly in " + timeSec +
+            " seconds. Your speed doesn’t matter – the fact that you tried while tired means a lot to me.";
+        } else {
+          typingStatusEl.style.color = "#b25a4e";
+          typingStatusEl.textContent =
+            "It’s a little different from the sentence, and that’s okay. Today your tired body still tried – I appreciate that.";
+        }
+      });
+    }
+    setNewSentence();
+
+    /* ---------- GAME 6: Moon Mood Journey ---------- */
+    const moonCircle = document.getElementById('moonCircle');
+    const moonLabel = document.getElementById('moonLabel');
+    const moonMoodText = document.getElementById('moonMoodText');
+    const moonButtons = document.querySelectorAll('.moon-btn');
+
+    const moonMessages = {
+      sad: "Feeling sad doesn’t mean you are weak. It usually means you have been holding a lot for too long. You are allowed to cry, and your tears are not a problem for me.",
+      angry: "When everything annoys you, it’s not just your fault – hormones and exhaustion are loud too. I don’t want to be scared of your anger; I want to understand it.",
+      tired: "Your body and mind are handling so much. Even if you do 'nothing' today, you are still doing a lot by just existing through this.",
+      calm: "This calmness is precious. You don’t have to hold it tightly – just relax into it and enjoy this softer moment.",
+      anxious: "",
+      numb: ""
+    };
+
+    moonButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const mood = btn.getAttribute('data-mood');
+        if (!moonCircle || !moonLabel || !moonMoodText || !mood) return;
+        moonCircle.className = 'moon-circle ' + mood;
+        if (mood === 'sad') moonLabel.textContent = "Today your heart feels heavy.";
+        else if (mood === 'angry') moonLabel.textContent = "Today you get angry easily.";
+        else if (mood === 'tired') moonLabel.textContent = "Today you are simply exhausted.";
+        else moonLabel.textContent = "A little more peaceful today.";
+        moonMoodText.textContent = moonMessages[mood];
+      });
+    });
+
+    /* ---------- GAME 7: Color My Heart ---------- */
+    const bigHeart = document.getElementById('bigHeart');
+    const heartColorText = document.getElementById('heartColorText');
+    const heartColorButtons = document.querySelectorAll('.heart-color-buttons button');
+
+    heartColorButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const color = btn.getAttribute('data-color');
+        if (!color) return;
+        if (bigHeart) {
+          bigHeart.style.background = color;
+          bigHeart.style.boxShadow = "0 10px 30px rgba(0,0,0,0.18)";
+        }
+        if (heartColorText) {
+          heartColorText.textContent =
+            "Whatever colour your heart is today – bright, cloudy, or grey – I still choose it, and I still choose you.";
+        }
+      });
+    });
+
+    /* ---------- GAME 8: Puzzle Us ---------- */
+    const puzzleGrid = document.getElementById('puzzleGrid');
+    const puzzleStatus = document.getElementById('puzzleStatus');
+    const resetPuzzleBtn = document.getElementById('resetPuzzle');
+    let selectedTile = null;
+
+    function isSolved(values) {
+      for (let i = 0; i < values.length; i++) {
+        if (values[i] !== (i + 1).toString()) return false;
+      }
+      return true;
+    }
+
+    function initPuzzle() {
+      if (!puzzleGrid || !puzzleStatus) return;
+      puzzleGrid.innerHTML = "";
+      let nums = ['1','2','3','4','5','6','7','8','9'];
+      do {
+        shuffle(nums);
+      } while (isSolved(nums)); // avoid already solved
+      nums.forEach(val => {
+        const tile = document.createElement('div');
+        tile.className = 'puzzle-tile';
+        tile.textContent = val;
+        tile.dataset.value = val;
+        tile.addEventListener('click', () => {
+          if (!selectedTile) {
+            selectedTile = tile;
+            tile.classList.add('selected');
+          } else if (selectedTile === tile) {
+            tile.classList.remove('selected');
+            selectedTile = null;
+          } else {
+            const tmpVal = selectedTile.dataset.value;
+            selectedTile.dataset.value = tile.dataset.value;
+            tile.dataset.value = tmpVal;
+            selectedTile.textContent = selectedTile.dataset.value;
+            tile.textContent = tile.dataset.value;
+            selectedTile.classList.remove('selected');
+            selectedTile = null;
+
+            const currentValues = Array.from(puzzleGrid.children).map(c => c.dataset.value);
+            if (isSolved(currentValues)) {
+              puzzleStatus.textContent =
+                "Puzzle complete! Just like our broken pieces, everything slowly finds the right place again.";
+            } else {
+              puzzleStatus.textContent =
+                "A few more little changes and it will all line up. No need to rush.";
+            }
+          }
+        });
+        puzzleGrid.appendChild(tile);
+      });
+      puzzleStatus.textContent = "Rearrange the numbers so they go from 1 to 9 in order.";
+    }
+
+    if (resetPuzzleBtn) {
+      resetPuzzleBtn.addEventListener('click', initPuzzle);
+    }
+    initPuzzle();
+
+    /* ---------- GAME 9: Tiny Choices Story ---------- */
+    const stories = [
+      {
+        text: "Tonight you feel exhausted and your head feels heavy. What do you choose?",
+        options: [
+          {
+            label: "Drink a glass of water and lie down in bed.",
+            result: "Taking care of your basic needs when you feel this tired is a big act of love toward yourself."
+          },
+          {
+            label: "Put on your favourite song and just listen.",
+            result: "Even a 3‑minute song can give your brain a small break from all the noise."
+          },
+          {
+            label: "Send him one short message: “Today I am really tired.”",
+            result: "You don’t have to carry your heaviness alone. I’m glad you let me see a little bit of it."
+          }
+        ]
+      },
+      {
+        text: "It’s the first day of your period. Your mood is low and your body is heavy. What feels okay?",
+        options: [
+          {
+            label: "Ask for space and stay quietly with yourself for a while.",
+            result: "Asking for space is healthy. I’m learning when to hold you and when to gently step back."
+          },
+          {
+            label: "Watch a small movie/episode, even if you don’t finish it.",
+            result: "A bit of distraction can be a soft way to survive a hard day. You don’t have to be productive."
+          },
+          {
+            label: "Call him for just 5 minutes, not a long talk.",
+            result: "Even tired and hurting, you chose to stay connected. I value that more than you know."
+          }
+        ]
+      },
+      {
+        text: "The day is not going your way. Many small things are going wrong. What do you do?",
+        options: [
+          {
+            label: "Let yourself cry without judging your tears.",
+            result: "Your tears are not weakness. They are your body releasing pressure so you can breathe again."
+          },
+          {
+            label: "Write a few lines in a note about how you feel.",
+            result: "Putting feelings into words is brave. One day we can look back and see how far you’ve come."
+          },
+          {
+            label: "Ask him silently in your heart to keep you in his prayers/thoughts today.",
+            result: "You are allowed to ask for emotional support. Your pain does not have to stay invisible."
+          }
+        ]
+      }
+    ];
+    let currentStory = 0;
+    const storyTextEl = document.getElementById('storyText');
+    const storyOptionsEl = document.getElementById('storyOptions');
+    const storyResultEl = document.getElementById('storyResult');
+    const nextStoryBtn = document.getElementById('nextStory');
+
+    function renderStory() {
+      if (!storyTextEl || !storyOptionsEl || !storyResultEl) return;
+      const st = stories[currentStory];
+      storyTextEl.textContent = st.text;
+      storyOptionsEl.innerHTML = "";
+      storyResultEl.textContent = "";
+      st.options.forEach(opt => {
+        const btn = document.createElement('button');
+        btn.className = 'secondary';
+        btn.textContent = opt.label;
+        btn.addEventListener('click', () => {
+          storyResultEl.textContent = opt.result;
+        });
+        storyOptionsEl.appendChild(btn);
+      });
+    }
+
+    if (nextStoryBtn) {
+      nextStoryBtn.addEventListener('click', () => {
+        currentStory = (currentStory + 1) % stories.length;
+        renderStory();
+      });
+    }
+    renderStory();
+
+    /* ---------- GAME 10: Breathe with Stars ---------- */
+    const breathCircle = document.getElementById('breathCircle');
+    const breathStatus = document.getElementById('breathStatus');
+    const startBreathingBtn = document.getElementById('startBreathing');
+    let breathInterval = null;
+    let breathStep = 0;
+    let breathCount = 0;
+
+    function stopBreathing() {
+      clearInterval(breathInterval);
+      breathInterval = null;
+      if (!breathCircle || !breathStatus) return;
+      breathCircle.classList.remove('expand');
+      breathCircle.textContent = "Done";
+      breathStatus.textContent =
+        "Even the smallest calm moments matter. If you want, you can close your eyes for a minute and just rest.";
+    }
+
+    if (startBreathingBtn) {
+      startBreathingBtn.addEventListener('click', () => {
+        if (breathInterval || !breathCircle || !breathStatus) return;
+        breathCount = 0;
+        breathStep = 0;
+        breathStatus.textContent = "Let’s start very gently...";
+        breathCircle.textContent = "Inhale";
+        breathCircle.classList.add('expand');
+        breathInterval = setInterval(() => {
+          if (!breathCircle || !breathStatus) return;
+          if (breathStep === 0) { // inhale
+            breathCircle.classList.add('expand');
+            breathCircle.textContent = "Inhale (4s)";
+            breathStatus.textContent = "Breathe in slowly through your nose.";
+            breathStep = 1;
+          } else { // exhale
+            breathCircle.classList.remove('expand');
+            breathCircle.textContent = "Exhale (4s)";
+            breathStatus.textContent = "Breathe out gently through your mouth or nose.";
+            breathStep = 0;
+            breathCount++;
+            if (breathCount >= 5) {
+              stopBreathing();
+            }
+          }
+        }, 4000);
+      });
+    }
+
+    /* ---------- GAME 11: Comfort Kitty ---------- */
+    const petCatBtn = document.getElementById('petCatBtn');
+    const catMood = document.getElementById('catMood');
+    const catPurrLevel = document.getElementById('catPurrLevel');
+    let petCount = 0;
+    const catMessages = [
+      "She closes her eyes a little. She’s starting to trust you.",
+      "She is purring softly: 'Thank you for being here, even on my bad days.'",
+      "She curls up closer to you. Your presence makes her feel safe.",
+      "She gently head‑butts your hand. That’s her way of saying she loves you.",
+      "She falls asleep next to you. Even your tired energy is gentle to her."
+    ];
+
+    if (petCatBtn && catMood && catPurrLevel) {
+      petCatBtn.addEventListener('click', () => {
+        petCount++;
+        catPurrLevel.textContent = petCount.toString();
+        const index = Math.min(catMessages.length - 1, Math.floor(petCount / 2));
+        catMood.textContent = catMessages[index];
+      });
+    }
+
+    /* ---------- GAME 12: Gentle Stretch Flow ---------- */
+    const stretches = [
+      {
+        title: "1. Shoulder rolls (sitting or standing)",
+        text: "Sit or stand comfortably. Slowly roll your shoulders up towards your ears, then back and down. Do this 5–8 times. Breathe slowly. If anything hurts, make the movement smaller or stop."
+      },
+      {
+        title: "2. Neck side stretch",
+        text: "Sit tall. Gently let your right ear move closer to your right shoulder (don’t force it). You can place your right hand lightly on your head for a soft stretch. Hold for a few breaths, then switch sides."
+      },
+      {
+        title: "3. Seated forward fold (very gentle)",
+        text: "Sit on the edge of your bed or a chair. Slowly bend forward, letting your arms and head hang down towards your knees. Relax your back. Breathe slowly for 5–10 seconds, then slowly come up."
+      },
+      {
+        title: "4. Knee‑to‑chest (lying down)",
+        text: "Lie on your back if that’s comfortable. Gently bring one knee toward your chest and hug it lightly. Hold for a few breaths, then change legs. If both knees feel okay, you can hug both for a moment."
+      },
+      {
+        title: "5. Child’s pose variation",
+        text: "If your body allows it, kneel on the bed or floor, sit back on your heels, and slowly bend forward, stretching your arms in front or beside you. Rest your forehead on something soft and breathe slowly."
+      },
+      {
+        title: "6. Just resting",
+        text: "Sometimes the best 'stretch' is simply lying in a position that feels safe and warm, with a pillow supporting your belly or back. Resting is also a form of self‑care."
+      }
+    ];
+    let currentStretch = 0;
+    const stretchTitle = document.getElementById('stretchTitle');
+    const stretchText = document.getElementById('stretchText');
+    const nextStretchBtn = document.getElementById('nextStretch');
+
+    function renderStretch() {
+      if (!stretchTitle || !stretchText) return;
+      const st = stretches[currentStretch];
+      stretchTitle.textContent = st.title;
+      stretchText.textContent = st.text;
+    }
+
+    if (nextStretchBtn) {
+      nextStretchBtn.addEventListener('click', () => {
+        currentStretch = (currentStretch + 1) % stretches.length;
+        renderStretch();
+      });
+    }
+    renderStretch();
+
+    /* ---------- GAME 13: Period Bingo ---------- */
+    const bingoItemsData = [
+      "I had at least one wave of pain.",
+      "My mood changed very fast at least once.",
+      "I felt like crying without a clear reason.",
+      "I felt annoyed by small things.",
+      "I felt guilty for not doing 'enough'.",
+      "I doubted if people really care about me.",
+      "I wanted to block or push someone away.",
+      "I felt very tired even after resting.",
+      "I felt bloated or uncomfortable in my body.",
+      "I was kind to myself, even just a little.",
+      "I asked someone for help or comfort.",
+      "I survived a moment I thought I couldn’t handle.",
+      "I laughed at least once today.",
+      "I drank some water or ate something gentle.",
+      "I remembered that this will not last forever."
+    ];
+    const bingoItemsEl = document.getElementById('bingoItems');
+    const checkBingoBtn = document.getElementById('checkBingo');
+    const bingoResultEl = document.getElementById('bingoResult');
+
+    function initBingo() {
+      if (!bingoItemsEl) return;
+      bingoItemsEl.innerHTML = "";
+      bingoItemsData.forEach((text, index) => {
+        const item = document.createElement('label');
+        item.className = 'bingo-item';
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.id = "bingo_" + index;
+        const span = document.createElement('span');
+        span.textContent = text;
+        item.appendChild(checkbox);
+        item.appendChild(span);
+        bingoItemsEl.appendChild(item);
+      });
+    }
+
+    if (checkBingoBtn && bingoItemsEl && bingoResultEl) {
+      checkBingoBtn.addEventListener('click', () => {
+        const checkedCount = bingoItemsEl.querySelectorAll('input[type="checkbox"]:checked').length;
+        if (checkedCount === 0) {
+          bingoResultEl.textContent =
+            "You didn’t tick anything – that’s okay too. Some days you just move through the hours and that’s already a lot.";
+        } else if (checkedCount <= 4) {
+          bingoResultEl.textContent =
+            "You went through several hard things today. Please remember: you are allowed to rest without feeling guilty.";
+        } else if (checkedCount <= 9) {
+          bingoResultEl.textContent =
+            "You carried a lot today. If you feel exhausted or emotional, it makes complete sense.";
+        } else {
+          bingoResultEl.textContent =
+            "You handled so many difficult things. It’s not 'just hormones' – it’s real effort. I’m proud of you for still being here.";
+        }
+      });
+    }
+    initBingo();
+
+    /* ---------- GAME 14: Gratitude Fireflies ---------- */
+    const gratitudeInput = document.getElementById('gratitudeInput');
+    const addGratitudeBtn = document.getElementById('addGratitude');
+    const fireflyArea = document.getElementById('fireflyArea');
+    const gratitudeHint = document.getElementById('gratitudeHint');
+    let gratitudeList = [];
+
+    if (addGratitudeBtn && gratitudeInput && fireflyArea && gratitudeHint) {
+      addGratitudeBtn.addEventListener('click', () => {
+        const text = gratitudeInput.value.trim();
+        if (!text) return;
+        gratitudeInput.value = "";
+        gratitudeList.push(text);
+        if (gratitudeList.length > 12) {
+          gratitudeList.shift();
+        }
+        const width = fireflyArea.clientWidth;
+        const height = fireflyArea.clientHeight;
+        const firefly = document.createElement('div');
+        firefly.className = 'firefly';
+        const left = Math.random() * (width - 20);
+        const top = Math.random() * (height - 40) + 10;
+        firefly.style.left = left + 'px';
+        firefly.style.top = top + 'px';
+        fireflyArea.appendChild(firefly);
+
+        gratitudeHint.textContent =
+          "Your fireflies: " + gratitudeList.map((g, i) => (i + 1) + ") " + g).join("  |  ");
+      });
+    }
+
+    /* ---------- Memory Modal ---------- */
+    const memoryModalBackdrop = document.getElementById('memoryModalBackdrop');
+    const memoryModalTitle = document.getElementById('memoryModalTitle');
+    const memoryModalText = document.getElementById('memoryModalText');
+    const memoryModalImg = document.getElementById('memoryModalImg');
+    const closeMemoryModal = document.getElementById('closeMemoryModal');
+    const memoryCards = document.querySelectorAll('.memory-card-box');
+
+    memoryCards.forEach(card => {
+      card.addEventListener('click', () => {
+        if (!memoryModalBackdrop || !memoryModalTitle || !memoryModalText || !memoryModalImg) return;
+        const title = card.getAttribute('data-title') || "";
+        const note = card.getAttribute('data-note') || "";
+        const img = card.getAttribute('data-img') || "";
+        memoryModalTitle.textContent = title;
+        memoryModalText.textContent = note;
+        if (img) {
+          memoryModalImg.src = img;
+          memoryModalImg.style.display = "block";
+        } else {
+          memoryModalImg.style.display = "none";
+        }
+        memoryModalBackdrop.style.display = "flex";
+      });
+    });
+    if (closeMemoryModal && memoryModalBackdrop) {
+      closeMemoryModal.addEventListener('click', () => {
+        memoryModalBackdrop.style.display = "none";
+      });
+      memoryModalBackdrop.addEventListener('click', (e) => {
+        if (e.target === memoryModalBackdrop) {
+          memoryModalBackdrop.style.display = "none";
+        }
+      });
+    }
+
+    /* ---------- Period Help: Need rest button ---------- */
+    const needRestBtn = document.getElementById('needRestBtn');
+    const needRestMsg = document.getElementById('needRestMsg');
+    if (needRestBtn && needRestMsg) {
+      needRestBtn.addEventListener('click', () => {
+        needRestMsg.textContent =
+          "Okay. Right now you don’t have to explain or fix anything. Rest, sleep, or just lie there. I will still be here tomorrow, and you will still matter the same to me.";
+      });
+    }
+
+    /* ---------- Period Help: Accordions ---------- */
+    const accordions = document.querySelectorAll('.accordion');
+    accordions.forEach(acc => {
+      acc.addEventListener('click', () => {
+        const panel = acc.nextElementSibling;
+        const isOpen = panel && panel.style.display === 'block';
+        document.querySelectorAll('.panel').forEach(p => p.style.display = 'none');
+        document.querySelectorAll('.accordion span').forEach(s => s.textContent = '+');
+        if (!isOpen && panel) {
+          panel.style.display = 'block';
+          const span = acc.querySelector('span');
+          if (span) span.textContent = '–';
+        }
+      });
+    });
+
+    /* ---------- CREATIVE CORNER: Love Coupons ---------- */
+    const couponMap = {
+      rest: "This coupon gives you one full day (or evening) of guilt‑free rest. Whatever you manage or don’t manage that day is completely okay. You are still loved.",
+      rant: "This coupon is for a no‑judgement rant. You can complain, swear, cry, repeat yourself – and I will just listen and care.",
+      call: "This coupon gives you a long, slow call where you don’t have to be entertaining. You can be silent, sleepy, or emotional – I will still stay.",
+      silence: "This coupon is for quiet presence. You don’t have to talk – we can just be connected, breathing in the same moment.",
+      movie: "This coupon is for a shared movie/series night. We press play together, send stupid comments, and forget the world for a while.",
+      reminder: "This coupon means I will remind you, as many times as you need, that you matter, that you are loved, and that this pain is not the whole story."
+    };
+    const couponButtons = document.querySelectorAll('.coupon-btn');
+    const couponText = document.getElementById('couponText');
+
+    if (couponText) {
+      couponButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const key = btn.getAttribute('data-coupon');
+          couponText.textContent = couponMap[key] || "";
+        });
+      });
+    }
+
+    /* ---------- CREATIVE CORNER: Kind Mirror ---------- */
+    const kindLines = [
+      "You are doing the best you can with the energy you have today.",
+      "Your sensitivity is not a weakness – it is the reason you care so deeply.",
+      "You are allowed to take up space, even when you feel messy inside.",
+      "You have survived every bad day so far. That counts as strength.",
+      "Even when you feel unlovable, there are people (including me) who love you so much.",
+      "Your feelings are valid, even if they are different from what other people expect.",
+      "You don’t have to earn rest by suffering enough – you deserve it already.",
+      "The fact that you keep going, even with pain and fear, makes you incredibly brave.",
+      "Your body is not your enemy; it is trying its best to carry you through everything.",
+      "You are allowed to be both soft and strong at the same time."
+    ];
+    const kindMirrorBtn = document.getElementById('kindMirrorBtn');
+    const kindMirrorText = document.getElementById('kindMirrorText');
+    if (kindMirrorBtn && kindMirrorText) {
+      kindMirrorBtn.addEventListener('click', () => {
+        const line = kindLines[Math.floor(Math.random() * kindLines.length)];
+        kindMirrorText.textContent = line;
+      });
+    }
+
+    /* ---------- DISTANCE LOVE: Clocks ---------- */
+    const clockDhaka = document.getElementById('clockDhaka');
+    const clockBangkok = document.getElementById('clockBangkok');
+    if (clockDhaka && clockBangkok) {
+      function updateClocks() {
+        const now = new Date();
+        try {
+          const dhaka = now.toLocaleTimeString('en-GB', {
+            timeZone: 'Asia/Dhaka',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit'
+          });
+          const bangkok = now.toLocaleTimeString('en-GB', {
+            timeZone: 'Asia/Bangkok',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit'
+          });
+          clockDhaka.textContent = dhaka;
+          clockBangkok.textContent = bangkok;
+        } catch (e) {
+          // Fallback if time zones not supported
+          const local = now.toLocaleTimeString();
+          clockDhaka.textContent = local;
+          clockBangkok.textContent = local;
+        }
+      }
+      updateClocks();
+      setInterval(updateClocks, 1000);
+    }
+
+    /* ---------- DISTANCE LOVE: Check-in ---------- */
+    const distMoodSelect = document.getElementById('distMoodSelect');
+    const distNeedSelect = document.getElementById('distNeedSelect');
+    const distGenerateBtn = document.getElementById('distGenerateBtn');
+    const distReplyText = document.getElementById('distReplyText');
+
+    if (distGenerateBtn && distMoodSelect && distNeedSelect && distReplyText) {
+      distGenerateBtn.addEventListener('click', () => {
+        const mood = distMoodSelect.value;
+        const need = distNeedSelect.value;
+        if (!mood || !need) {
+          distReplyText.textContent = "Choose both how you feel and what you mostly want, and I’ll answer like a message from me.";
+          return;
+        }
+        let moodPart = "";
+        let needPart = "";
+
+        switch (mood) {
+          case "sad":
+            moodPart = "If you feel sad and heavy right now, you don’t have to pretend to be okay for me.";
+            break;
+          case "angry":
+            moodPart = "If everything is making you angry today, I know it’s not because you’re a bad person.";
+            break;
+          case "tired":
+            moodPart = "If you are very tired, your only job is to survive this day, not to be productive.";
+            break;
+          case "anxious":
+            moodPart = "If your head is full of anxious thoughts, I don’t see you as 'too much' – I see someone who is carrying a lot.";
+            break;
+          case "numb":
+            moodPart = "If you feel numb or empty, that’s also a feeling. It means you protected yourself for a while.";
+            break;
+          case "ok":
+            moodPart = "If you feel kind of okay today, I’m glad your heart has a little bit of space to breathe.";
+            break;
+        }
+
+        switch (need) {
+          case "space":
+            needPart = "I’ll give you some space, but I’m not disappearing. I’ll still be here on the other side of your silence.";
+            break;
+          case "call":
+            needPart = "If you want a call, I’ll try my best to be there and just listen, without forcing you to be cheerful.";
+            break;
+          case "texts":
+            needPart = "If gentle texts help, I’ll send small messages instead of expecting long conversations from you.";
+            break;
+          case "comfort":
+            needPart = "I won’t rush to fix everything. I’ll just stay with you in the feeling and remind you that you’re not alone.";
+            break;
+          case "dontknow":
+            needPart = "Even if you don’t know what you need, I can still stay close in a quiet way, so you don’t have to figure it out alone.";
+            break;
+        }
+
+        distReplyText.textContent = moodPart + " " + needPart;
+      });
+    }
+
+    /* ---------- DISTANCE LOVE: Positivity ---------- */
+    const distPositivityBtn = document.getElementById('distPositivityBtn');
+    const distPositivityText = document.getElementById('distPositivityText');
+    const distanceLines = [
+      "Every goodnight message we send is a small bridge between two countries.",
+      "Distance is not proof that we are weak; it’s proof that we are trying, even in a harder mode.",
+      "One day, all these calls and messages will be stories we tell about how we made it anyway.",
+      "We don’t share a room yet, but we already share the same moon, the same sky, and a lot of the same thoughts.",
+      "Every time we choose to stay, even when we’re tired of distance, our love grows a little stronger.",
+      "Long distance love is not less real – it’s just less visible. The feelings are just as deep.",
+      "There are people who see each other every day and still feel alone. We are far away, but we are not alone.",
+      "Every 'I miss you' is really another way of saying, 'You matter to me so much.'",
+      "When we finally meet, we will bring all these difficult days with us – as proof of how much we fought for this.",
+      "Even on days when we don’t talk much, the connection we built doesn’t disappear overnight."
+    ];
+
+    if (distPositivityBtn && distPositivityText) {
+      distPositivityBtn.addEventListener('click', () => {
+        distPositivityText.textContent = distanceLines[Math.floor(Math.random() * distanceLines.length)];
+      });
+    }
+
+    /* ---------- Extra Love: Reasons ---------- */
+    const reasons = [
+      "You care deeply about other people and you are so honest .",
+      "After you get angry, you still reflect on yourself – that takes a lot of maturity.",
+      "You try to hide your own pain so you don’t bother others, even though you deserve support too.",
+      "You can find small pieces of happiness in tiny things ,you find beauty on everyone",
+      "You don’t only stay for me in good times, you also stay when things are complicated.",
+      "You are honest about your feelings, even when they are not pretty or easy.",
+      "You try to understand my world and my culture, even with distance between us.",
+      "You don’t expect perfection from me – you just want real effort, and I want to give you that.",
+      "You are still here, even after so many bad days. That alone tells me how strong you are.",
+      " I have some flaws but you accepted me . you understand me so good ."
+    ];
+    const showReasonBtn = document.getElementById('showReason');
+    const reasonText = document.getElementById('reasonText');
+    if (showReasonBtn && reasonText) {
+      showReasonBtn.addEventListener('click', () => {
+        const reason = reasons[Math.floor(Math.random() * reasons.length)];
+        reasonText.textContent = reason;
+      });
+    }
+
+    /* ---------- Extra Love: Tiny tasks ---------- */
+    const tinyTasks = [
+      "Drink one glass of water slowly and take three deep breaths. That’s all you have to achieve right now.",
+      "Listen to one full song you like from start to finish, without skipping. Let the song carry you for a few minutes.",
+      "Close your eyes for 2 minutes and do nothing. You don’t need to think positive thoughts – just exist.",
+      "Tell yourself softly: “I am doing the best I can today.” Once out loud, once in your head.",
+      "Send me one short message, even just: “Today is hard.” You don’t have to explain more if you don’t want to.",
+      "Look at the sky for a moment – day or night – and remember that we are under the same sky.",
+      "Open one memory box on this site and read it slowly, like a little letter from me to you.",
+      "Play “Breathe with Stars” and complete at least 3 breaths. Then you are officially allowed to rest.",
+      "Pet the Comfort Kitty 3 times and imagine she is sleeping on your lap, warm and soft.",
+      "Choose a colour for the big heart that matches your mood right now. No colour is wrong.",
+      "Add at least one small thing to the Gratitude Fireflies – even if it’s just: “I’m still here.”",
+      "Play any game here for 3 minutes, then stop – you don’t have to finish or be good at it.",
+      "Write one kind sentence about yourself in your phone notes. It can be as simple as: “I tried today.”",
+      "Stretch your shoulders or neck once (very gently), then thank your body for carrying you."
+    ];
+    const tinyTaskText = document.getElementById('tinyTaskText');
+    const newTaskBtn = document.getElementById('newTaskBtn');
+    if (newTaskBtn && tinyTaskText) {
+      newTaskBtn.addEventListener('click', () => {
+        tinyTaskText.textContent = tinyTasks[Math.floor(Math.random() * tinyTasks.length)];
+      });
+    }
+
+  });
+</script>
+
+</body>
+</html>
+```
